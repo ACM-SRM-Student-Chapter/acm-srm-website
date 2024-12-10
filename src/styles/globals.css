@@ -1,0 +1,67 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --black: #000;
+  --dark-grey: #e6efed;
+  --white: #fff;
+  --yellow: #fccf00;
+  --purple: #deaaff;
+  --peach: #ffcbb0;
+  --green: #006046;
+  --light-grey: #f2f7f6;
+  --pink: #ffc4d7;
+  --turquoise: #aed9e0;
+  --blue: #004fe3;
+  --orange: orange;
+  --light-blue: #00e4ff;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.services-flex_wrapper {
+  text-align: center;
+  position: relative;
+}
+
+.services-absolute {
+  position: sticky;
+  top: 95px;
+  float: left;
+  z-index: 10;
+}
+
+.services-block_wrapper {
+  margin-left: 300px;
+  position: relative;
+  z-index: 20;
+}
+
+.services-block {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  min-height: 460px;
+  padding: 60px;
+  position: relative;
+  text-align: left;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.5s ease-out forwards;
+}

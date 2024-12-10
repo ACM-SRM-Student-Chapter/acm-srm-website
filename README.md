@@ -1,34 +1,104 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# ACM SRM Student Chapter Website
 
-## Getting Started
+## Tech Stack
 
-First, run the development server:
+- **Framework**: Next.js 14 (App Router)
+- **Styling**: Tailwind CSS
+- **Animations**: 
+  - Lenis for smooth scrolling 
+  - Custom animations using CSS
+- **Fonts**: 
+  - Mango Grotesque
+  - Poly Sans
+- **Dev Tools**: TypeScript, ESLint
 
+## Setup
+
+1. Clone the repo and install dependencies:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+git clone https://github.com/ashibad/acm-srm-website.git
+cd acm-srm-website
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Run the development server:
+```bash
+npm run dev
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Open http://localhost:3000 to view it in your browser
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Project Structure
 
-## Learn More
+```
+src/
+├── app/
+│   ├── layout.tsx         # Root layout with navigation
+│   ├── page.tsx           # Home page
+│   ├── teams/             # Teams page
+│   ├── events/            # Events page
+│   ├── gallery/           # Gallery page
+│   └── contact/           # Contact page
+│
+├── components/
+│   ├── global/           # Shared components (Navigation)
+│   ├── home/             # Homepage components (Hero, Domains, etc.)
+│   └── ui/               # Reusable UI components
+│
+└── styles/
+    ├── globals.css       # Global styles & Tailwind imports
+    └── fonts.ts          # Font configurations
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Adding New Pages
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Create a new page by adding a `page.tsx` file in the corresponding directory:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+```tsx
+// app/your-page/page.tsx
+export default function YourPage() {
+  return (
+    <main className="pt-24 px-4 md:px-32">
+      <div className="max-w-[1920px] mx-auto">
+        <h1 className="text-5xl md:text-[100px] font-title font-bold mb-24">
+          Your Page Title
+        </h1>
+        {/* Your content */}
+      </div>
+    </main>
+  )
+}
+```
 
-## Deploy on Vercel
+## Working with Images
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Put all images in `public/images/` and reference them like:
+```tsx
+<Image 
+  src="/images/example.svg"
+  alt="description"
+  width={400} 
+  height={300}
+/>
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Styles
+
+- Add custom styles in globals.css
+- Follow existing component styles for consistency
+
+## Branch Workflow
+
+1. Create a branch for your work
+```bash
+git checkout -b page/feature-name
+```
+
+2. Make your changes
+
+3. Push your changes
+```bash
+git add .
+git commit -m "describe your changes"
+git push origin page/feature-name
+```
