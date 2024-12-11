@@ -15,18 +15,126 @@ export default function GalleryPage() {
       {/* Gallery */}
       <div className="columns-2 gap-4 px-4 md:columns-3 lg:columns-4 m-4 max-w-4xl mx-auto mt-4">
         {/* Images */}
-        <img className="mb-4 w-full rounded-lg object-cover" src="images/gallery-1.png" alt="Gallery Image 1" />
-        <img className="mb-4 w-full rounded-lg object-cover" src="images/gallery-3.png" alt="Gallery Image 2" />
-        <img className="mb-4 w-full rounded-lg object-cover" src="images/gallery-2.png" alt="Gallery Image 3" />
-        <img className="mb-4 w-full rounded-lg object-cover" src="images/gallery-4.png" alt="Gallery Image 4" />
-        <img className="mb-4 w-full rounded-lg object-cover" src="images/gallery-5.png" alt="Gallery Image 5" />
-        <img className="mb-4 w-full rounded-lg object-cover" src="images/gallery-6.png" alt="Gallery Image 6" />
-        <img className="mb-4 w-full rounded-lg object-cover" src="images/gallery-7.png" alt="Gallery Image 7" />
-        <img className="mb-4 w-full rounded-lg object-cover" src="images/gallery-8.png" alt="Gallery Image 8" />
-        <img className="mb-4 w-full rounded-lg object-cover" src="images/gallery-9.png" alt="Gallery Image 9" />
-        <img className="mb-4 w-full rounded-lg object-cover" src="images/gallery-10.png" alt="Gallery Image 10" />
-        <img className="mb-4 w-full rounded-lg object-cover" src="images/gallery-11.png" alt="Gallery Image 11" />
-        <img className="mb-4 w-full rounded-lg object-cover" src="images/gallery-5.png" alt="Gallery Image 5" />
+        <div className="mb-4 w-full">
+          <Image
+            className="rounded-lg object-cover"
+            src="/images/gallery-1.png"
+            alt="Gallery Image 1"
+            width={500}
+            height={500}
+            layout="responsive"
+          />
+        </div>
+        <div className="mb-4 w-full">
+          <Image
+            className="rounded-lg object-cover"
+            src="/images/gallery-3.png"
+            alt="Gallery Image 2"
+            width={500}
+            height={500}
+            layout="responsive"
+          />
+        </div>
+        <div className="mb-4 w-full">
+          <Image
+            className="rounded-lg object-cover"
+            src="/images/gallery-2.png"
+            alt="Gallery Image 3"
+            width={500}
+            height={500}
+            layout="responsive"
+          />
+        </div>
+        <div className="mb-4 w-full">
+          <Image
+            className="rounded-lg object-cover"
+            src="/images/gallery-4.png"
+            alt="Gallery Image 4"
+            width={500}
+            height={500}
+            layout="responsive"
+          />
+        </div>
+        <div className="mb-4 w-full">
+          <Image
+            className="rounded-lg object-cover"
+            src="/images/gallery-5.png"
+            alt="Gallery Image 5"
+            width={500}
+            height={500}
+            layout="responsive"
+          />
+        </div>
+        <div className="mb-4 w-full">
+          <Image
+            className="rounded-lg object-cover"
+            src="/images/gallery-6.png"
+            alt="Gallery Image 6"
+            width={500}
+            height={500}
+            layout="responsive"
+          />
+        </div>
+        <div className="mb-4 w-full">
+          <Image
+            className="rounded-lg object-cover"
+            src="/images/gallery-7.png"
+            alt="Gallery Image 7"
+            width={500}
+            height={500}
+            layout="responsive"
+          />
+        </div>
+        <div className="mb-4 w-full">
+          <Image
+            className="rounded-lg object-cover"
+            src="/images/gallery-8.png"
+            alt="Gallery Image 8"
+            width={500}
+            height={500}
+            layout="responsive"
+          />
+        </div>
+        <div className="mb-4 w-full">
+          <Image
+            className="rounded-lg object-cover"
+            src="/images/gallery-9.png"
+            alt="Gallery Image 9"
+            width={500}
+            height={500}
+            layout="responsive"
+          />
+        </div>
+        <div className="mb-4 w-full">
+          <Image
+            className="rounded-lg object-cover"
+            src="/images/gallery-10.png"
+            alt="Gallery Image 10"
+            width={500}
+            height={500}
+            layout="responsive"
+          />
+        </div>
+        <div className="mb-4 w-full">
+          <Image
+            className="rounded-lg object-cover"
+            src="/images/gallery-11.png"
+            alt="Gallery Image 11"
+            width={500}
+            height={500}
+            layout="responsive"
+          />
+        </div>
+        <div className="mb-4 w-full">
+          <Image
+            className="rounded-lg object-cover"
+            src="/images/gallery-5.png"
+            alt="Gallery Image 5"
+            width={500}
+            height={500}
+            layout="responsive"
+          />
+        </div>
       </div>
 
       {/* Footer */}
