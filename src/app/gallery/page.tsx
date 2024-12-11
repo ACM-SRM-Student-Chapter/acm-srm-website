@@ -138,23 +138,24 @@ export default function GalleryPage() {
               priority
             />
             <div className="text-3xl font-bold tracking-wide">
-            <hr className="border-2 border-black w-full mb-2" />
-            <div className="flex flex-col">
-            SRMIST-KTR
-              <br />
-              <span className="text-sm font-bold self-end">STUDENT CHAPTER</span>
-            </div>
-              
-            <hr className="border-2 border-black w-full mt-2" />
+              <hr className="border-2 border-black w-full mb-2" />
+              <div className="flex flex-col">
+                SRMIST-KTR
+                <br />
+                <span className="text-sm font-bold self-end">
+                  STUDENT CHAPTER
+                </span>
+              </div>
+
+              <hr className="border-2 border-black w-full mt-2" />
             </div>
           </div>
           <div className="flex flex-col">
-          <hr className="border-2 border-black w-[328px] mb-3" />
-          <p className="text-sm">
-            ACM SRM © {new Date().getFullYear()}. All Rights Reserved.
-          </p>
+            <hr className="border-2 border-black w-[328px] mb-3" />
+            <p className="text-sm">
+              ACM SRM © {new Date().getFullYear()}. All Rights Reserved.
+            </p>
           </div>
-          
         </div>
       </footer>
     </>
