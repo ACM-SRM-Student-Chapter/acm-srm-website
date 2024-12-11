@@ -10,10 +10,12 @@ import l9 from "../../../public/images/Line9.png";
 import l10 from "../../../public/images/line10.png";
 import l11 from "../../../public/images/Line11.png";
 import l12 from "../../../public/images/Line12.png";
+import Navigation from "@/components/global/Navigation";
 
 export default function TeamsPage() {
   return (
     <main className="pt-24 px-4 md:px-32">
+      <Navigation/>
       <div className="max-w-[1920px] mx-auto">
         <h1 className="text-7xl md:text-8xl  lg:text-9xl  font-title font-bold text-center tracking-widest">Meet the Minds</h1>
         <p className="text-xl md:text-3xl pb-8 lg:text-4xl font-title text-center tracking-widest">
