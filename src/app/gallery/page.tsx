@@ -8,7 +8,8 @@ export default function GalleryPage() {
       {/* Heading */}
       <div className="flex bg-[#FFCBB0] justify-center items-center lg:h-[28rem] md:h-[20rem] sm:h-[16rem] h-[16rem]">
         <h1 className="text-black text-center font-bold lg:text-7xl md:text-5xl sm:text-4xl text-3xl leading-tight sm:mt-12 mt-[80px] sm:px-4 px-8 md:mt-12">
-          Welcome to the<br />
+          Welcome to the
+          <br />
           Gallery of ACM
         </h1>
       </div>
@@ -22,7 +23,6 @@ export default function GalleryPage() {
             alt="Gallery Image 1"
             width={500}
             height={500}
-            layout="responsive"
           />
         </div>
         <div className="mb-4 w-full">
@@ -32,7 +32,6 @@ export default function GalleryPage() {
             alt="Gallery Image 2"
             width={500}
             height={500}
-            layout="responsive"
           />
         </div>
         <div className="mb-4 w-full">
@@ -42,7 +41,6 @@ export default function GalleryPage() {
             alt="Gallery Image 3"
             width={500}
             height={500}
-            layout="responsive"
           />
         </div>
         <div className="mb-4 w-full">
@@ -52,7 +50,6 @@ export default function GalleryPage() {
             alt="Gallery Image 4"
             width={500}
             height={500}
-            layout="responsive"
           />
         </div>
         <div className="mb-4 w-full">
@@ -62,7 +59,6 @@ export default function GalleryPage() {
             alt="Gallery Image 5"
             width={500}
             height={500}
-            layout="responsive"
           />
         </div>
         <div className="mb-4 w-full">
@@ -72,7 +68,6 @@ export default function GalleryPage() {
             alt="Gallery Image 6"
             width={500}
             height={500}
-            layout="responsive"
           />
         </div>
         <div className="mb-4 w-full">
@@ -82,7 +77,6 @@ export default function GalleryPage() {
             alt="Gallery Image 7"
             width={500}
             height={500}
-            layout="responsive"
           />
         </div>
         <div className="mb-4 w-full">
@@ -92,7 +86,6 @@ export default function GalleryPage() {
             alt="Gallery Image 8"
             width={500}
             height={500}
-            layout="responsive"
           />
         </div>
         <div className="mb-4 w-full">
@@ -102,7 +95,6 @@ export default function GalleryPage() {
             alt="Gallery Image 9"
             width={500}
             height={500}
-            layout="responsive"
           />
         </div>
         <div className="mb-4 w-full">
@@ -112,7 +104,6 @@ export default function GalleryPage() {
             alt="Gallery Image 10"
             width={500}
             height={500}
-            layout="responsive"
           />
         </div>
         <div className="mb-4 w-full">
@@ -122,7 +113,6 @@ export default function GalleryPage() {
             alt="Gallery Image 11"
             width={500}
             height={500}
-            layout="responsive"
           />
         </div>
         <div className="mb-4 w-full">
@@ -132,7 +122,6 @@ export default function GalleryPage() {
             alt="Gallery Image 5"
             width={500}
             height={500}
-            layout="responsive"
           />
         </div>
       </div>
@@ -144,19 +133,28 @@ export default function GalleryPage() {
             <Image
               src="/images/acm-logo.svg"
               alt="ACM Logo"
-              width={120}
-              height={120}
+              width={140}
+              height={140}
               priority
             />
-            <div className="text-2xl font-bold tracking-wide">
-              SRMIST-KTR
+            <div className="text-3xl font-bold tracking-wide">
+            <hr className="border-2 border-black w-full mb-2" />
+            <div className="flex flex-col">
+            SRMIST-KTR
               <br />
-              <span className="text-sm">STUDENT CHAPTER</span>
+              <span className="text-sm font-bold self-end">STUDENT CHAPTER</span>
+            </div>
+              
+            <hr className="border-2 border-black w-full mt-2" />
             </div>
           </div>
-          <p className="text-base">
+          <div className="flex flex-col">
+          <hr className="border-2 border-black w-[328px] mb-3" />
+          <p className="text-sm">
             ACM SRM © {new Date().getFullYear()}. All Rights Reserved.
           </p>
+          </div>
+          
         </div>
       </footer>
     </>
