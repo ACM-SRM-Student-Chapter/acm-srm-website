@@ -39,15 +39,18 @@ export default function AboutPage() {
               />
           </div>
           </div>
-          <div className="text-5xl md:text-[68px] font-title tracking-wider font-semibold ml-28       w-customw2 mb-5">
-            Empowering Minds, Shaping the Future of Computing.
+          <div className="flex flex-row justify-center align-middle items-center  ">
+            <div className="text-5xl md:text-[68px] font-title tracking-wider font-semibold   mb-9">
+              Empowering Minds, Shaping the Future of Computing.
+            </div>
           </div>
-          <div className="flex flex-row text-5xl md:text-[49px] font-title font-normal ml-28 mb-32 ">
+          
+          <div className="flex flex-row text-5xl md:text-[49px] font-title font-normal justify-center align-middle items-center mb-32 ">
             <div className="w-customw3 mr-9">content</div>
             <div className="w-customw3">content</div>
           </div>
-          <div className="flex flex-row mb-16">
-            <div className="ml-28 bg-customgrey  font-title w-customw4 mr-5 h-custom2 text-5xl md:text-[99px] pl-28 pt-24">
+          <div className="flex flex-row mb-16 justify-center align-middle items-center">
+            <div className=" bg-customgrey  font-title w-customw4 mr-5 h-custom2 text-5xl md:text-[99px] pl-28 pt-24">
               image/illustration
             </div>
             <div className="bg-customorange font-title w-customw4 h-custom2 text-5xl md:text-[99px] flex flex-col  pl-7 pt-6 ">
@@ -55,8 +58,8 @@ export default function AboutPage() {
               <div className="font-normal">content</div>
             </div>
           </div>
-          <div className="flex flex-row mb-16">
-            <div className="bg-customblue ml-28 font-title  w-customw4 mr-5 h-custom2 text-5xl md:text-[99px] flex flex-col  pl-7 pt-6">
+          <div className="flex flex-row mb-16 justify-center align-middle items-center">
+            <div className="bg-customblue  font-title  w-customw4 mr-5 h-custom2 text-5xl md:text-[99px] flex flex-col  pl-7 pt-6">
               <div className="font-bold">What We Do</div>
               <div className="font-normal">content</div>
             </div>
@@ -64,8 +67,8 @@ export default function AboutPage() {
             image/illustration
             </div>
           </div>
-          <div className="flex flex-row mb-16">
-            <div className="ml-28 bg-customgrey font-title w-customw4 mr-5 h-custom2 text-5xl md:text-[99px] pl-28 pt-24">
+          <div className="flex flex-row mb-16 justify-center align-middle items-center">
+            <div className=" bg-customgrey font-title w-customw4 mr-5 h-custom2 text-5xl md:text-[99px] pl-28 pt-24">
             image/illustration
             </div>
             <div className="bg-custombrown font-title w-customw4 h-custom2 text-5xl md:text-[99px] pl-7 pt-6">
