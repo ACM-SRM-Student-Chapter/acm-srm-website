@@ -118,7 +118,7 @@ export default function AboutPage() {
 
           </div>
 
-          <div className="flex flex-row justify-center items-center gap-2 md:gap-5 lg:gap-10 pt-4 md:pt-6 lg:pt-10">
+          <div className="flex flex-row justify-center items-center gap-2 md:gap-5 lg:gap-10 pt-4 md:pt-6 lg:pt-10 pb-10">
 
           <Image
                 src={a3}
