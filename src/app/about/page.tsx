@@ -5,14 +5,37 @@ import img2 from '../../../public/images/grpimg2.png'
 import a1 from '../../../public/images/abt1.png'
 import a2 from '../../../public/images/abt2.png'
 import a3 from '../../../public/images/abt3.png'
+import va from '../../../public/images/v1.png'
+import vb from '../../../public/images/v2.png'
+import vc from '../../../public/images/v3.png'
 export default function AboutPage() {
     return (
       <div className="">
       <Navigation/>
       <main className="pt-24 flex flex-col ">
         <div className="bg-[#FDDC68] font-title">
-          <p className="text-center text-black text-5xl md:text-7xl lg:text-9xl font-bold tracking-widest   pt-10">ABOUT US</p>
+          <p className="text-center text-black text-5xl md:text-7xl lg:text-9xl font-bold tracking-widest lg:pt-16  pt-10">About Us</p>
           <p className="text-xl md:text-3xl lg:text-5xl text-black text-center tracking-widest pb-[60px] md:pb-24 lg:pb-40">Dedicated to techincal, professional, and personal <br /> development in the context of computer science.</p>
+
+
+          <Image
+                src={va}
+                alt="fig"
+                className="absolute hidden md:block lg:block md:w-[18px] md:h-[11px]  lg:w-[30px] lg:h-[20px]  md:-mt-[243px] md:ml-[480px] lg:-mt-[390px] lg:ml-[890px] "
+                />
+
+
+<Image
+                src={vb}
+                alt="fig"
+                className="absolute hidden md:block lg:block md:w-[23px] md:h-[13px]  lg:w-[35px] lg:h-[18px] -mt-[170px] ml-[240px] md:-mt-[213px] md:ml-[502px] lg:-mt-[325px] lg:ml-[930px] "
+                />
+
+<Image
+                src={vc} 
+                alt="fig"
+                className="absolute hidden md:block lg:block md:w-[33px] md:h-[13px]  lg:w-[45px] lg:h-[15px]  md:-mt-[193px] md:ml-[500px] lg:-mt-[290px] lg:ml-[930px] "
+                />
 
         </div>
 
