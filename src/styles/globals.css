@@ -65,3 +65,13 @@ body {
 .animate-fadeIn {
   animation: fadeIn 0.5s ease-out forwards;
 }
+
+@layer utilities {
+  .video-container {
+    transition: width 1s ease-out;
+  }
+  
+  .video-content {
+    transition: opacity 0.5s ease-out;
+  }
+}
