@@ -1,330 +1,303 @@
-import Image from "next/image";
+"use client";
 
+import React, { useRef } from "react";
+import Image from "next/image";
+import { motion, useScroll, useTransform } from "framer-motion";
+import Navigation from "@/components/global/Navigation";
+
+// Imports
 import p1 from "../../../public/images/picone.png";
 import evpic from "../../../public/images/evepic.png";
 import corpic from "../../../public/images/corppic.png";
 import techpic from "../../../public/images/techpic.png";
 import crtv from "../../../public/images/crtvpic.png";
-import l8 from "../../../public/images/line8.png";
-import l9 from "../../../public/images/Line9.png";
-import l10 from "../../../public/images/line10.png";
-import l11 from "../../../public/images/Line11.png";
-import l12 from "../../../public/images/Line12.png";
-import Navigation from "@/components/global/Navigation";
+
+// Types
+interface TeamMemberProps {
+  image: any;
+  className?: string;
+  index?: number;
+}
+
+// Enhanced TeamMember Card
+const TeamMemberCard = ({ 
+  image, 
+  className = "",
+  index = 0 
+}: TeamMemberProps) => {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+      className={`relative group ${className}`}
+    >
+      {/* Enhanced Background Effect */}
+      <div className="absolute inset-0 h-[98%] bg-gradient-to-r from-[#C4FCF0]/20 to-[#FCE7E2]/20 
+        rounded-2xl transform translate-x-2 translate-y-2 transition-transform group-hover:translate-x-1" />
+      
+      {/* Main Card */}
+      <div className="relative bg-white rounded-2xl overflow-hidden shadow-xl">
+        <div className="relative w-full h-full">
+          <Image
+            src={image}
+            alt="Team member"
+            className="object-cover transition-transform duration-500 group-hover:scale-105"
+            priority
+          />
+          
+          {/* Hover Effects */}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#C4FCF0]/30 to-transparent 
+            opacity-0 group-hover:opacity-100 transition-all duration-300" />
+
+          {/* Decorative Elements */}
+          <div className="absolute top-0 right-0 w-24 h-24 transform rotate-45 translate-x-12 -translate-y-12
+            bg-gradient-to-br from-[#C4FCF0] to-transparent opacity-0 group-hover:opacity-40 transition-opacity duration-300" />
+        </div>
+      </div>
+    </motion.div>
+  );
+};
+
+
+const SectionTitle = ({ title }: { title: string }) => (
+  <motion.div
+    initial={{ opacity: 0, y: 20 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    className="relative mb-20"
+  >
+    <div className="flex items-center gap-8">
+      <motion.div
+        initial={{ scaleX: 0 }}
+        whileInView={{ scaleX: 1 }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+        className="h-[3px] flex-1 origin-left bg-gradient-to-r from-transparent via-[#C4FCF0] to-transparent"
+      />
+      <h2 className="text-5xl md:text-7xl lg:text-8xl font-title font-bold tracking-wider whitespace-nowrap">
+        {title}
+      </h2>
+      <motion.div
+        initial={{ scaleX: 0 }}
+        whileInView={{ scaleX: 1 }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+        className="h-[3px] flex-1 origin-right bg-gradient-to-r from-transparent via-[#FCE7E2] to-transparent"
+      />
+    </div>
+  </motion.div>
+);
+
+
+const DomainConnector = ({ 
+  title, 
+  description, 
+  stats 
+}: { 
+  title: string; 
+  description: string;
+  stats?: { label: string; value: string }[];
+}) => (
+  <motion.div 
+    initial={{ opacity: 0 }}
+    whileInView={{ opacity: 1 }}
+    transition={{ duration: 0.8 }}
+    className="relative py-24"
+  >
+    <div className="max-w-4xl mx-auto">
+      <div className="text-center space-y-6 mb-12">
+        <h3 className="text-3xl md:text-4xl font-title font-bold">{title}</h3>
+        <p className="text-xl md:text-2xl font-poly text-black/60 leading-relaxed">{description}</p>
+      </div>
+      
+      {stats && (
+        <div className="grid grid-cols-3 gap-12 mt-16">
+          {stats.map((stat, index) => (
+            <div key={index} className="text-center">
+              <div className="text-4xl md:text-5xl font-title font-bold mb-3">{stat.value}</div>
+              <div className="text-lg md:text-xl font-poly text-black/60">{stat.label}</div>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+    
+    <div className="absolute left-0 right-0 top-1/2 -translate-y-1/2 h-[2px]
+      bg-gradient-to-r from-transparent via-[#C4FCF0]/50 to-transparent" />
+  </motion.div>
+);
 
 export default function TeamsPage() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  });
+
+  const y1 = useTransform(scrollYProgress, [0, 1], [0, -100]);
+  const y2 = useTransform(scrollYProgress, [0, 1], [0, -150]);
+  const y3 = useTransform(scrollYProgress, [0, 1], [0, -200]);
+
   return (
-    <main className="pt-24 px-4 md:px-32">
-      <Navigation/>
-      <div className="max-w-[1920px] mx-auto">
-        <h1 className="text-7xl md:text-8xl  lg:text-9xl  font-title font-bold text-center tracking-widest">Meet the Minds</h1>
-        <p className="text-xl md:text-3xl pb-8 lg:text-4xl font-title text-center tracking-widest">
-          A dynamic team shaping the future of technology, innovation, and collaboration
-        </p>
+    <main className="relative min-h-screen bg-white" ref={containerRef}>
+      <Navigation />
 
-        <div className="bg-[#ebe8e8] rounded-3xl p-5">
-          <div className="max-w-6xl mx-auto">
-          {/*section for student body starts here */}
-          <div className="flex items-start justify-start pb-7 md:pb-10 lg:pb-12">
+      {/* Background Elements */}
+      <div className="fixed inset-0 pointer-events-none overflow-hidden">
+        {/* Enhanced Grid Pattern */}
+        <div className="absolute inset-0 opacity-[0.02]">
+          <svg width="100%" height="100%">
+            <pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse">
+              <path d="M 50 0 L 0 0 0 50" fill="none" stroke="black" strokeWidth="1"/>
+            </pattern>
+            <rect width="100%" height="100%" fill="url(#grid)" />
+          </svg>
+        </div>
 
-            <div className="flex justify-end items-end gap-6">
-              <p className="text-3xl md:text-5xl lg:text-7xl font-semibold font-title tracking-widest whitespace-nowrap">Student Body</p>
-              <Image
-                src={l11}
-                alt="line"
-                className="w-[190px] md:w-[250px] h-1px lg:w-[785px] lg:h-[5px]  "
-                
+        {/* Animated Gradient Blobs */}
+        <motion.div style={{ y: y1 }} className="absolute -top-20 left-0 w-[700px] h-[700px]">
+          <div className="absolute inset-0 bg-[#C4FCF0] rounded-full blur-[120px] opacity-20" />
+        </motion.div>
+        <motion.div style={{ y: y2 }} className="absolute top-[40%] right-0 w-[600px] h-[600px]">
+          <div className="absolute inset-0 bg-[#FCE7E2] rounded-full blur-[120px] opacity-20" />
+        </motion.div>
+        <motion.div style={{ y: y3 }} className="absolute bottom-0 left-[30%] w-[800px] h-[800px]">
+          <div className="absolute inset-0 bg-[#F9DEC2] rounded-full blur-[120px] opacity-20" />
+        </motion.div>
+      </div>
+
+      {/* Main Content */}
+      <div className="relative pt-32 px-6 md:px-32">
+        <div className="max-w-[2000px] mx-auto">
+          {/* Enhanced Hero Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-40"
+          >
+            <h1 className="text-8xl md:text-9xl lg:text-[10rem] font-title font-bold tracking-wider mb-8 
+              bg-gradient-to-r from-black via-black/80 to-black bg-clip-text text-transparent">
+              Meet the Minds
+            </h1>
+            <p className="text-2xl md:text-4xl lg:text-5xl font-title tracking-wider text-black/60 max-w-5xl mx-auto">
+              A dynamic team shaping the future of technology, innovation, and collaboration
+            </p>
+          </motion.div>
+
+          {/* Team Sections */}
+          <section className="mb-40">
+            <SectionTitle title="Student Body" />
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16">
+              {[...Array(6)].map((_, index) => (
+                <TeamMemberCard
+                  key={index}
+                  image={p1}
+                  index={index}
+                  className="w-full aspect-[4/5]"
                 />
+              ))}
             </div>
-          </div>
+          </section>
 
-            {/* Row 1 */}
-            <div className="flex justify-center items-center  md:flex-wrap md:gap-4 lg:flex-wrap  lg:gap-10 mt-10">
-              <Image
-                src={p1}
-                alt="member 1"
-                className="lg:w-[349px] lg:h-[343px] md:w-[150px] md:h-[155px] w-[111px] h-[109px]"
-                
-              />
-              <Image
-                src={p1}
-                alt="member 2"
-                className=" w-[111px] h-[109px] md:w-[150px] md:h-[155px] lg:w-[349px] lg:h-[343px]"
-                
-              />
-              <Image
-                src={p1}
-                alt="member 3"
-                className="lg:w-[349px] lg:h-[343px] md:w-[150px] md:h-[155px] w-[111px] h-[109px]"
-                
-              />
+          <DomainConnector
+            title="Building Tomorrow's Tech Leaders"
+            description="Our diverse team brings together passionate individuals from various domains, working in harmony to create impactful technological solutions and foster innovation."
+            stats={[
+              { label: "Active Projects", value: "15+" },
+              { label: "Team Members", value: "50+" },
+              { label: "Tech Domains", value: "8+" }
+            ]}
+          />
+
+          {/* Technical Section */}
+          <section className="mb-40">
+            <SectionTitle title="Technical" />
+            <div className="space-y-24">
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                className="flex justify-center"
+              >
+                <div className="relative">
+                  <div className="absolute -inset-4 bg-gradient-to-r from-[#C4FCF0] to-[#FCE7E2] opacity-20 rounded-2xl blur-lg" />
+                  <TeamMemberCard
+                    image={techpic}
+                    className="w-[500px] aspect-[4/5] relative z-10"
+                  />
+                </div>
+              </motion.div>
+
+              <div className="flex flex-wrap justify-center gap-24">
+                {[...Array(2)].map((_, index) => (
+                  <TeamMemberCard
+                    key={index}
+                    image={techpic}
+                    index={index}
+                    className="w-[450px] aspect-[4/5]"
+                  />
+                ))}
+              </div>
             </div>
+          </section>
 
-            {/* Card row 2 */}
+          <DomainConnector
+            title="Where Innovation Meets Design"
+            description="The synergy between technical expertise and creative vision drives our projects to new heights, creating solutions that are both powerful and beautiful."
+            stats={[
+              { label: "Projects Completed", value: "20+" },
+              { label: "Design Systems", value: "5+" },
+              { label: "Awards Won", value: "10+" }
+            ]}
+          />
 
-            <div className="flex justify-center items-center md:flex-wrap md:gap-4 lg:flex-wrap  lg:gap-10 mt-10">
-              <Image
-                src={p1}
-                alt="member 1"
-                className="lg:w-[349px] lg:h-[343px] md:w-[150px] md:h-[155px] w-[111px] h-[109px]"
-                
-              />
-              <Image
-                src={p1}
-                alt="member 2"
-                className=" w-[111px] h-[109px] md:w-[150px] md:h-[155px] lg:w-[349px] lg:h-[343px]"
-                
-              />
-              <Image
-                src={p1}
-                alt="member 3"
-                className="lg:w-[349px] lg:h-[343px] md:w-[150px] md:h-[155px] w-[111px] h-[109px]"
-                
-              />
+          {/* Creatives Section */}
+          <section className="mb-40">
+            <SectionTitle title="Creatives" />
+            <div className="grid grid-cols-2 gap-x-24 gap-y-16">
+              {[...Array(4)].map((_, index) => (
+                <div key={index} className={`${index % 2 === 0 ? 'mt-24' : ''} relative group`}>
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    className="relative"
+                  >
+                    <div className="absolute -left-4 top-0 w-[2px] h-0 bg-gradient-to-b from-[#C4FCF0] to-[#FCE7E2] 
+                      group-hover:h-full transition-all duration-500" />
+                    <TeamMemberCard
+                      image={crtv}
+                      index={index}
+                      className="w-full aspect-[4/5]"
+                    />
+                  </motion.div>
+                </div>
+              ))}
             </div>
-
-            {/*Section for student body ends here */}
-
+          </section>
 
 
-
-
-            {/*tech section start here */}
-            <div className="flex items-start justify-start py-7 md:py-10 lg:py-12">
-
-            <div className="flex justify-end items-end gap-6">
-            <Image
-                src={l11}
-                alt="line"
-                className="w-[40px] lg:w-[180px] lg:h-[5px] lg:ml-3 "
-                
-                />
-              <p className="text-3xl md:text-5xl lg:text-7xl font-semibold font-title tracking-widest">Technical</p>
-              <Image
-                src={l11}
-                alt="line"
-                className="w-[160px] md:w-[250px] h-[2px] lg:w-[663px] lg:h-[5px] lg:ml-3 "
-                
-                />
-            </div>
-          </div>
-
-            {/*tech card 1*/}
-            <div className="flex justify-center items-center md:flex-wrap md:gap-4 lg:flex-wrap  lg:gap-10 mt-10">
-            <Image
-                src={techpic}
-                alt="member 3"
-                className="lg:w-[412px] lg:h-[359px] md:w-[150px] md:h-[155px] w-[121px] h-[109px]"
-                
-              />
-            </div>
-
-            {/*tech card 2 n 3 */}
-
-            <div className="flex justify-center items-center  md:flex-wrap gap-20 md:gap-40 lg:flex-wrap  lg:gap-80 mt-10">
-            <Image
-                src={techpic}
-                alt="member 2"
-                className=" w-[121px] h-[109px] md:w-[150px] md:h-[155px] lg:w-[412px] lg:h-[359px]"
-                
-              />
-              <Image
-                src={techpic}
-                alt="member 3"
-                className="lg:w-[412px] lg:h-[359px] md:w-[150px] md:h-[155px] w-[121px] h-[109px]"
-                
-              />
-            </div>
-
-            {/*Technical cards ending */}
-
-
-
-
-
-
-            {/*creatives starting here  */}
-            <div className="flex items-center justify-center py-7 md:py-10 lg:py-12">
-
-            <div className="flex justify-end items-end gap-6">
-            <Image
-                src={l11}
-                alt="line"
-                className="w-[65px] md:w-[115px] lg:w-[350px] lg:h-[5px] "
-                
-                />
-              <p className="text-3xl md:text-5xl lg:text-7xl font-semibold font-title tracking-widest">Creatives</p>
-              <Image
-                src={l11}
-                alt="line"
-                className="w-[120px] md:w-[180px] lg:w-[350px] lg:h-[5px] "
-                
-                />
-            </div>
-          </div>
-
-            {/* roaw 1*/}
-            <div className="flex justify-start items-start  md:flex-wrap gap-7 md:gap-16 lg:flex-wrap  lg:gap-60 mt-10">
-              <Image
-                src={crtv}
-                alt="member 1"
-                className="lg:w-[349px] lg:h-[343px] md:w-[150px] md:h-[155px] w-[111px] h-[109px]"
-                
-              />
-              <Image
-                src={crtv}
-                alt="member 2"
-                className=" w-[111px] h-[109px] md:w-[150px] md:h-[155px] lg:w-[305px] lg:h-[309px]"
-                
-              />
-            </div>
-            {/*row 2 */}
-            <div className="flex justify-end items-end  md:flex-wrap gap-7 md:gap-16 lg:flex-wrap  lg:gap-60 mt-10">
-              <Image
-                src={crtv}
-                alt="member 1"
-                className=" w-[111px] h-[109px] md:w-[150px] md:h-[155px] lg:w-[305px] lg:h-[309px]"
-                
-              />
-              <Image
-                src={crtv}
-                alt="member 2"
-                className=" w-[111px] h-[109px] md:w-[150px] md:h-[155px] lg:w-[305px] lg:h-[309px]"
-                
-              />
-            </div>
-
-            {/* creatives end here */}
-
-            
-
-
-
-            {/* Corporate starts here */}
-
-            <div className="flex items-center justify-center py-7 md:py-10 lg:py-20">
-
-            <div className="flex justify-end items-end gap-6">
-            <Image
-                src={l11}
-                alt="line"
-                className="w-[100px] md:w-[170px] lg:w-[431px] lg:h-[5px] "
-                
-                />
-              <p className="text-3xl md:text-5xl lg:text-7xl font-semibold font-title tracking-widest">Corporate</p>
-              <Image
-                src={l12}
-                alt="line"
-                className="w-[87px] md:w-[117px] lg:w-[374px] lg:h-[5px] "
-                
-                />
-            </div>
-          </div>
-
-            {/* Row 1 */}
-            <div className="flex justify-center items-center  md:flex-wrap gap-5 md:gap-10 lg:flex-wrap  lg:gap-32 mt-10">
-              <Image
-                src={corpic}
-                alt="member 1"
-                className="lg:w-[483px] lg:h-[393px] md:w-[160px] md:h-[155px] w-[131px] h-[109px]"
-                
-              />
-              <Image
-                src={corpic}
-                alt="member 2"
-                className=" w-[131px] h-[109px] md:w-[160px] md:h-[155px] lg:w-[483px] lg:h-[393px]"
-                
-              />
-            </div>
-
-            {/*Corporate sectionends here */}
-
-
-
-
-
-
-
-            {/*Event section start here */}
-            <div className="flex items-end justify-end py-7 md:py-10 lg:py-20">
-
-                <div className="flex justify-end items-end gap-6">
+          {/* Footer */}
+          <footer className="w-full py-20 border-t border-[#C4FCF0]/30">
+            <div className="max-w-[2000px] mx-auto flex flex-col md:flex-row justify-between items-center gap-10">
+              <div className="flex items-center gap-8">
                 <Image
-                src={l12} 
-                alt="line"
-                className="w-[140px] md:w-[190px] lg:w-[674px] lg:h-[5px] "
-                
+                  src="/images/acm-logo.svg"
+                  alt="ACM Logo"
+                  width={140}
+                  height={140}
+                  priority
                 />
-
-  <div className="text-3xl md:text-5xl lg:text-7xl font-semibold font-title tracking-widest whitespace-nowrap"><p>Event Management </p></div>
-</div>
-</div>
-
-            {/*Events card one */}
-            <div className="flex justify-center items-center md:flex-wrap md:gap-4 lg:flex-wrap  lg:gap-10 mt-10">
-            <Image
-                src={evpic}
-                alt="member 3"
-                className="lg:w-[307px] lg:h-[344px] md:w-[150px] md:h-[155px] w-[111px] h-[109px]"
-                
-              />
+                <div className="text-2xl font-title">
+                  SRMIST-KTR
+                  <br />
+                  STUDENT CHAPTER
+                </div>
+              </div>
+              <p className="text-lg font-poly text-black/60">
+                ACM SRM © {new Date().getFullYear()}. All Rights Reserved.
+              </p>
             </div>
-
-            {/*Events card 2 ND 3 */}
-
-            <div className="flex justify-center items-center  md:flex-wrap gap-20 md:gap-40 lg:flex-wrap  lg:gap-80 mt-10">
-            <Image
-                src={evpic}
-                alt="member 2"
-                className=" w-[111px] h-[109px] md:w-[150px] md:h-[155px] lg:w-[307px] lg:h-[344px]"
-                
-              />
-              <Image
-                src={evpic}
-                alt="member 3"
-                className="lg:w-[307px] lg:h-[344px] md:w-[150px] md:h-[155px] w-[111px] h-[109px]"
-                
-              />
-            </div>
-
-            {/*Event cards ending */}
-
-
-            
-          </div>
+          </footer>
         </div>
-
-
-
-
-        {/*footer area */}
-        <footer className="w-full px-4 md:px-32 py-16 border-t border-gray-200">
-        <div className="max-w-[1920px] mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
-          <div className="flex items-center gap-6">
-            <Image
-              src="/images/acm-logo.svg"
-              alt="ACM Logo"
-              width={120}
-              height={120}
-              priority
-            />
-            <div className="text-xl font-title">
-              SRMIST-KTR
-              <br />
-              STUDENT CHAPTER
-            </div>
-          </div>
-          <p className="text-sm font-poly">
-            ACM SRM © {new Date().getFullYear()}. All Rights Reserved.
-          </p>
-        </div>
-      </footer>
-
-
-
-
-
-
       </div>
     </main>
   );

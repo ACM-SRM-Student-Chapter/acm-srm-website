@@ -5,6 +5,7 @@ import ReSections from '@/components/home/ReSections'
 import IntroSection from '@/components/home/IntroSection'
 import StatementSection from '@/components/home/StatementSection'
 import Contact from '@/components/home/Contact'
+import EventsGallery from '@/components/home/EventsGallary'
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       <Domains />
       <ReSections />
       <IntroSection />
+      <EventsGallery/>
       <StatementSection />
       <Contact />
     </main>
