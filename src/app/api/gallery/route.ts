@@ -2,7 +2,7 @@
 import { NextResponse } from 'next/server';
 import { promises as fs } from 'fs';
 import path from 'path';
-
+export const dynamic = "force-static" 
 export async function GET() {
   try {
     const galleryDir = path.join(process.cwd(), 'public', 'images', 'gallery');
