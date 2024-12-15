@@ -1,8 +1,9 @@
+import { NextResponse } from 'next/server';
+
 export async function POST(req: Request) {
     try {
       const data = await req.json();
-      
-      // Dummy API response 
+
       console.log('Form submission:', data);
   
       return NextResponse.json(
@@ -16,4 +17,3 @@ export async function POST(req: Request) {
       );
     }
   }
-  
