@@ -4,7 +4,7 @@ import React, { useRef } from "react";
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Navigation from "@/components/global/Navigation";
-
+import Footer from '@/components/global/Footer'
 // Imports
 import p1 from "../../../public/images/picone.png";
 import evpic from "../../../public/images/evepic.png";
@@ -142,7 +142,7 @@ export default function TeamsPage() {
 
       {/* Background Elements */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
-        {/* Enhanced Grid Pattern */}
+
         <div className="absolute inset-0 opacity-[0.02]">
           <svg width="100%" height="100%">
             <pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse">
@@ -167,7 +167,7 @@ export default function TeamsPage() {
       {/* Main Content */}
       <div className="relative pt-32 px-6 md:px-32">
         <div className="max-w-[2000px] mx-auto">
-          {/* Enhanced Hero Section */}
+
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -276,27 +276,7 @@ export default function TeamsPage() {
 
 
           {/* Footer */}
-          <footer className="w-full py-20 border-t border-[#C4FCF0]/30">
-            <div className="max-w-[2000px] mx-auto flex flex-col md:flex-row justify-between items-center gap-10">
-              <div className="flex items-center gap-8">
-                <Image
-                  src="/images/acm-logo.svg"
-                  alt="ACM Logo"
-                  width={140}
-                  height={140}
-                  priority
-                />
-                <div className="text-2xl font-title">
-                  SRMIST-KTR
-                  <br />
-                  STUDENT CHAPTER
-                </div>
-              </div>
-              <p className="text-lg font-poly text-black/60">
-                ACM SRM © {new Date().getFullYear()}. All Rights Reserved.
-              </p>
-            </div>
-          </footer>
+          <Footer />
         </div>
       </div>
     </main>

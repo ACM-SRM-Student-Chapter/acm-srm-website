@@ -23,6 +23,7 @@ interface EventDetails {
   schedule?: string[];
   speakers?: string[];
   highlights?: string[];
+  industrialPartners: string[];
   prizes?: string[];
   themes?: string[];
   perks?: string[];
@@ -106,111 +107,347 @@ const EventsTimeline = () => {
   }, [isModalOpen]);
   const events: Event[] = [
     {
-      date: "15",
+      date: "03",
       month: "April",
-      title: "Orientation",
-      description: "Begin your journey with SRM ACM Student Chapter at Orientation Day 2024! Join us for insights from Dr. Venkatesh Raman.",
-      lottieUrl: "https://lottie.host/221793c1-d004-4106-8a13-68fdd539d821/OH73UVRfC8.lottie",
+      title: "Ideaforge",
+      description: "A vibrant platform for individuals to tackle real-world challenges through innovative solutions, bringing together bright minds to collaborate and create.",
+      lottieUrl: "https://lottie.host/dd4f6546-dffb-468f-9256-66feb4ba61d4/x0x1tHIqYF.lottie",
       gallery: [
         {
-          type: 'image',
-          source: "/images/event2.jpeg",
-          caption: "Opening ceremony with industry leaders"
+          type: "image",
+          source: "/images/gallery/ev2-5.jpeg",
+          caption: "Teams brainstorming solutions"
         },
         {
-          type: 'video',
-          source: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-          caption: "Orientation Day Highlights",
-          thumbnail: "/images/event2.jpeg"
+          type: "image",
+          source: "/images/gallery/ev2-2.jpeg",
+          caption: "Team Presentations",
         },
         {
-          type: 'image',
-          source: "/images/event2.jpeg",
-          caption: "Networking session highlights"
+          type: "image",
+          source: "/images/gallery/ev2-1.jpeg",
+          caption: "Team Maverick - Winners"
         },
         {
-          type: 'video',
-          source: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-          caption: "Welcome Address",
-          thumbnail: "/images/event2.jpeg"
+          type: "image",
+          source: "/images/gallery/ev2-3.jpeg",
+          caption: "Team 29 - Runners Up"
+        },
+        {
+            type: "image",
+            source: "/images/gallery/ev2-4.jpeg",
+            caption: "Networking Opportunities"
+        },
+        {
+            type: "image",
+            source: "/images/gallery/ev2-6.jpeg",
+            caption: "Mentorship Sessions"
         }
       ],
       details: {
-        venue: "Main Auditorium",
-        time: "10:00 AM - 12:00 PM",
-        schedule: [
-          "9:30 AM - Registration",
-          "10:00 AM - Welcome Address",
-          "10:30 AM - Keynote Speech",
-          "11:15 AM - Interactive Session",
-          "11:45 AM - Networking Break"
-        ],
-        speakers: [
-          "Dr. Venkatesh Raman - AI Research Lead",
-          "Prof. Sarah Johnson - ACM Faculty Advisor"
-        ],
+        venue: "IMAC LAB, 14th Floor, Tech Park, SRMIST",
+        time: "9:00 AM - 5:00 PM",
         highlights: [
-          "Exclusive ACM membership benefits",
-          "Upcoming events preview",
-          "Special workshop announcements",
-          "Networking opportunities"
+          "Networking Opportunities"
+        ],
+        perks: [
+          "Mentorship Sessions"
+        ],
+        achievements: [
+          "15 teams participated",
+          "Team Maverick - Winners",
+          "Team 29 - Runners Up"
+        ],
+        outcomes: [
+          "Innovative solutions for real-world problems",
+          "Collaborative innovation environment",
+          "Diverse range of ideas presented"
         ]
       }
     },
     {
       date: "15",
-      month: "April", 
-      title: "IdeaForge",
-      description: "This hackathon sparked creativity in young engineers, boosting their skills and increasing competency within their peer group.",
-      lottieUrl: "https://lottie.host/dd4f6546-dffb-468f-9256-66feb4ba61d4/x0x1tHIqYF.lottie",
+      month: "April",
+      title: "Orientation",
+      description: "An engaging and inspiring start marking the revival of the chapter, featuring insights from Prof. Venkatesh Raman, President of ACM India.",
+      lottieUrl: "https://lottie.host/221793c1-d004-4106-8a13-68fdd539d821/OH73UVRfC8.lottie",
       gallery: [
         {
-          type: 'image',
-          source: "/images/event2.jpeg",
-          caption: "Teams working on their projects"
+          type: "image",
+          source: "/images/gallery/ev3-1.JPG",
+          caption: "Welcome Address"
         },
         {
-          type: 'video',
-          source: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-          caption: "Hackathon Kickoff",
-          thumbnail: "/images/event2.jpeg"
+          type: "image",
+          source: "/images/gallery/ev3-2.JPG",
+          caption: "Prof. Venkatesh Raman's Keynote",
         },
         {
-          type: 'image',
-          source: "/images/event2.jpeg",
-          caption: "Prize distribution ceremony"
+          type: "image",
+          source: "/images/gallery/ev3-3.JPG",
+          caption: "Interactive Session"
         },
         {
-          type: 'video',
-          source: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-          caption: "Winning Team Presentation",
-          thumbnail: "/images/event2.jpeg"
+          type: "image",
+          source: "/images/gallery/ev3-4.JPG",
+          caption: "Community Introduction"
+        },
+        {
+          type: "image",
+          source: "/images/gallery/ev3-5.JPG",
+          caption: "Networking Break"
         }
       ],
       details: {
-        venue: "Tech Hub, Block 5",
-        duration: "48 Hours",
-        prizes: [
-          "₹50,000 First Prize",
-          "₹30,000 Second Prize",
-          "₹20,000 Third Prize",
-          "Special Innovation Award"
-        ],
-        themes: [
-          "AI/ML Solutions",
-          "Sustainable Technology",
-          "Healthcare Innovation",
-          "Smart Cities"
+        venue: "IMAC Lab, 14th Floor, Tech Park, SRMIST",
+        time: "9:00 AM - 11:30 AM",
+        highlights: [
+          "ACM India DSP Programme"
         ],
         perks: [
-          "Free cloud credits",
-          "Mentorship sessions",
-          "Industry exposure",
-          "Internship opportunities"
+          "Membership works"
+        ],
+        speakers: [
+          "Prof. Venkatesh Raman, President of ACM India",
+          "Dr. M. Suchithra, Faculty Sponsor SRM ACM Student Chapter",
+          "S Sembon Surakshitha"
         ]
       }
     },
-   
+    {
+      date: "01",
+      month: "August",
+      title: "Pair Programming with JA Assure",
+      description: "A dynamic hackathon collaboration with JA Assure, Singapore, offering internship opportunities for winners alongside cash prizes.",
+      lottieUrl: "https://lottie.host/63596568-196a-43e2-8487-03e8dd0b4876/rojqpKfNM6.lottie",
+      gallery: [
+        {
+          type: "image",
+          source: "/images/gallery/ev4-1.JPG",
+          caption: "Teams at work"
+        },
+        {
+          type: "image",
+          source: "/images/gallery/ev4-2.JPG",
+          caption: "Prize Distribution Ceremony",
+        },
+
+    {
+        type: "image",
+        source: "/images/gallery/ev4-3.JPG",
+        caption: "Teams at work"
+      },
+      {
+        type: "image",
+        source: "/images/gallery/ev4-4.jpeg",
+        caption: "Winning Teams"
+      },
+      ],
+      details: {
+        venue: "4th Floor, Tech Park, SRMIST",
+        time: "9:00 AM - 5:00 PM",
+        highlights: [
+          "Special Cash prizes"
+        ],
+        perks: [
+          "Internships from JA ASSURE"
+        ],
+        speakers: [
+          "Dr. M. Pushpalatha",
+          "Dr. M. Suchithra",
+          "Dr. Revathi Venkataraman",
+          "Dr. D. Vinod",
+          "Ms. S. Sathyapriya",
+          "Mr. Prabhushankar"
+        ],
+        industrialPartners: [
+          "Mr. Wasim - JA Assure",
+          "Mr. Vinoth - JA Assure",
+          "Mr. Arshdeep - JA Assure"
+        ],
+        winners: [
+          "1st Place: Team BBSx2 (Rs 15,000)",
+          "2nd Place: Team NEO (Rs 10,000)",
+          "3rd Place: Team In Ctrl (Rs 5000)"
+        ]
+      }
+    },
+    {
+      date: "05",
+      month: "September",
+      title: "Health Conclave",
+      description: "A comprehensive exploration of healthcare and next-generation computing technologies, featuring expert talks and interactive sessions.",
+      lottieUrl: "https://lottie.host/fe04eef6-c74a-41aa-af23-491afe2cffd4/V4s0LgY8qt.lottie",
+      gallery: [
+        {
+          type: "image",
+          source: "/images/gallery/ev1-2.png",
+          caption: "Opening Ceremony"
+        },
+        {
+          type: "image",
+          source: "/images/gallery/ev1-5.png",
+          caption: "Expert Panel Discussion",
+        },
+        {
+          type: "image",
+          source: "/images/gallery/ev1-3.png",
+          caption: "Idea Pitching Session"
+        },
+        {
+          type: "image",
+          source: "/images/gallery/ev1-1.png",
+          caption: "Awards Ceremony"
+        },
+        {
+          type: "image",
+          source: "/images/gallery/ev1-4.png",
+          caption: "Opening Ceremony"
+        },
+      ],
+      details: {
+        venue: "IMAC Lab, 14th Floor, Tech Park, SRMIST",
+        time: "9:00 AM - 5:00 PM",
+        duration: "2 days (5-6 September)",
+        highlights: [
+          "Networking Opportunities"
+        ],
+        perks: [
+          "Mentorship Sessions"
+        ],
+        speakers: [
+          "Dr. Subalalitha C.N. – Associate Professor, Computing Technologies",
+          "Dr. M. Pushpalatha – Head of Department",
+          "Mr. Hari S. – CEO, Bootstrappers' Research Council",
+          "Mr. Ananth Kumar – Associate Director, Entrepreneurship",
+          "Mr. Senthil Nayagam – Founder, Muonium AI",
+          "Dr. Madhanraj Kalyanasundaram – Scientist, ICMR",
+          "Mr. Anoop Menon – Assistant Professor of Architecture",
+          "Dr. Vadivelan – Professor of Pediatric Physiotherapy",
+          "Dr. Shantanu Patil – Director of Entrepreneurship"
+        ]
+      }
+    },
+    {
+      date: "25",
+      month: "November",
+      title: "Refresher Course on Generative AI",
+      description: "A comprehensive Faculty Development Program exploring Generative AI applications across various domains, featuring international experts.",
+      lottieUrl: "https://lottie.host/2465cf5b-0238-4a6c-9e76-d798850fa8ec/HljClNC1Ip.lottie",
+      gallery: [
+        {
+          type: "image",
+          source: "/images/gallery/ev5-1.jpg",
+          caption: "Day 1: Fundamentals Session"
+        },
+        {
+          type: "image",
+          source: "/images/gallery/ev5-2.jpg",
+          caption: "International Speaker Sessions",
+        },
+        {
+          type: "image",
+          source: "/images/gallery/ev5-3.png",
+          caption: "Hands-on Workshops"
+        },
+        {
+          type: "image",
+          source: "/images/gallery/ev5-4.png",
+          caption: "Group Activities"
+        },
+        {
+          type: "image",
+          source: "/images/gallery/ev5-6.png",
+          caption: "Group Activities"
+        },
+      ],
+      details: {
+        venue: "IMAC Lab, 14th Floor, Tech Park, SRMIST",
+        time: "9:00 AM - 5:00 PM",
+        duration: "5 days (25-29 November)",
+        highlights: [
+          "Special Workshop"
+        ],
+        perks: [
+          "Internship Opportunities"
+        ],
+        schedule: [
+          "Day 1: Introduction and Fundamentals - Dr. Rajeswaran V",
+          "Day 2: Healthcare Projects - Dr. Tahir Mahmood",
+          "Day 3: Applications and Ethics - Mrs. Sharmila Devi & Dr. Bhargav Sagiraju",
+          "Day 4: Medical Sensors - Dr. Shahzad Ahmed",
+          "Day 5: Future Trends - Dr. Ganesh Neelakanta Iyer & Mr. S. Gunasekaran"
+        ],
+        speakers: [
+          "Dr. Rajeswaran V - Senior Director, Capgemini",
+          "Dr. Tahir Mahmood - Assistant Professor, Dongguk University",
+          "Mrs. Sharmila Devi - Senior Technical Lead, USA",
+          "Dr. Bhargav Sagiraju - AI Researcher, NUS",
+          "Dr. Shahzad Ahmed - Research Assistant Professor, Hanyang University",
+          "Dr. Ganesh Neelakanta Iyer - Lecturer, NUS",
+          "Mr. S. Gunasekaran - Director, Pixibit Pvt. Ltd."
+        ]
+      }
+    },
+    {
+      date: "21",
+      month: "August",
+      title: "Recruitment Drive 2024",
+      description: "A pivotal moment marking the evolution of our chapter as we welcome a new wave of dynamic talent and diverse expertise, strengthening our foundation for future innovations.",
+      lottieUrl: "https://lottie.host/d425cd5a-3c68-4d1f-945b-f3b5e9d3458b/o1SuKIRQIz.lottie",
+      gallery: [
+        {
+          type: "image",
+          source: "/images/gallery/ev6-1.jpeg",
+          caption: "Interview Session"
+        },
+        {
+          type: "image",
+          source: "/images/gallery/ev6-2.jpeg",
+          caption: "Technical Round"
+        },
+        {
+          type: "image",
+          source: "/images/gallery/ev6-3.jpeg",
+          caption: "Group Discussion"
+        },
+        {
+          type: "image",
+          source: "/images/gallery/ev6-4.jpeg",
+          caption: "Team Interaction"
+        }
+      ],
+      details: {
+        venue: "1st Floor, Tech Park, SRMIST",
+        time: "5:00 AM - 6:30 PM",
+        duration: "21 August - 28 October 2024",
+        interviewers: [
+          "Nihal Sivapuram",
+          "TVNSK Mohan",
+          "Grahisha S",
+          "Krishna P",
+          "Alen Varghese"
+        ],
+        highlights: [
+          "Multi-round selection process",
+          "Technical and soft skills assessment",
+          "Interactive team discussions",
+          "One-on-one interviews"
+        ],
+        outcomes: [
+          "Exceptional response from talented candidates",
+          "Diverse skill set integration",
+          "Enhanced chapter capabilities",
+          "Strengthened innovation potential"
+        ],
+        vision: [
+          "Foster innovation and collaboration",
+          "Drive transformative initiatives",
+          "Cultivate professionalism and inclusivity",
+          "Achieve unprecedented milestones"
+        ]
+      }
+    }
   ];
 
   // Helper Components
@@ -353,19 +590,19 @@ const EventsTimeline = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-50 flex items-center justify-center px-4 py-6"
+          className="fixed inset-0 z-50 flex items-center justify-center px-4 py-6 overflow-hidden"
           onClick={(e) => {
             if (e.target === e.currentTarget) onClose();
           }}
         >
           <div className="fixed inset-0 bg-black/40 backdrop-blur-sm" />
           <motion.div 
-            initial={{ scale: 0.95, y: 20 }}
-            animate={{ scale: 1, y: 0 }}
-            exit={{ scale: 0.95, y: 20 }}
-            className="relative bg-white rounded-2xl w-full max-w-4xl max-h-[90vh] shadow-2xl"
-            ref={modalContentRef}
-          >
+              initial={{ scale: 0.95, y: 20 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.95, y: 20 }}
+              className="relative bg-white rounded-2xl w-full max-w-4xl max-h-[90vh] shadow-2xl overflow-hidden" 
+              ref={modalContentRef}
+            >
             {/* Background Pattern */}
             <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
               <svg width="100%" height="100%">
@@ -376,7 +613,16 @@ const EventsTimeline = () => {
               </svg>
             </div>
 
-            <div className="relative h-full overflow-y-auto">
+
+            <div 
+              className="relative h-full overflow-y-auto" 
+              style={{ maxHeight: '90vh' }}
+              onWheel={(e) => {
+                e.stopPropagation();  
+                const target = e.currentTarget;
+                target.scrollTop += e.deltaY;
+              }}
+            >
               <div className="p-6 md:p-8">
                 {/* Header */}
                 <div className="flex items-start justify-between mb-8">
@@ -607,13 +853,13 @@ const EventsTimeline = () => {
                   <>
                     {/* Desktop connector (horizontal) */}
                     <img 
-                      src={`/images/curl${(index % 5) + 1}.svg`}
+                      src={`/images/curl${(index % 6) + 1}.svg`}
                       alt="connector"
                       className="absolute -right-20 top-1/4 transform -translate-y-1/2 w-40 h-12 hidden md:block"
                     />
                     {/* Mobile connector (vertical) */}
                     <img 
-                      src={`/images/mcurl${(index % 5) + 1}.svg`}
+                      src={`/images/mcurl${(index % 6) + 1}.svg`}
                       alt="mobile connector"
                       className="absolute left-1/2 -bottom-16 transform -translate-x-1/2 w-12 h-40 md:hidden"
                     />

@@ -6,6 +6,7 @@ import IntroSection from '@/components/home/IntroSection'
 import StatementSection from '@/components/home/StatementSection'
 import Contact from '@/components/home/Contact'
 import EventsGallery from '@/components/home/EventsGallary'
+import Footer from '@/components/global/Footer'
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
       <EventsGallery/>
       <StatementSection />
       <Contact />
+      <Footer />
     </main>
   )
 }

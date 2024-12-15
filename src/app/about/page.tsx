@@ -2,10 +2,22 @@
 
 import React from "react";
 import Image from "next/image";
-import { motion, useScroll, useTransform } from "framer-motion";
+import Link from "next/link";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { useInView } from 'react-intersection-observer';
 import Navigation from "@/components/global/Navigation";
+import Footer from '@/components/global/Footer';
+import { FiInstagram, FiLinkedin, FiGithub } from 'react-icons/fi';
+import { SiDiscord } from 'react-icons/si';
+import GlobalImpact from '@/components/about/GlobalImpact';
+
+import { 
+  LineChart, AreaChart, Area, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer 
+} from 'recharts';
+import { Globe } from 'lucide-react';
 
 
+// Import images
 import img1 from '../../../public/images/grpimg1.png';
 import img2 from '../../../public/images/grpimg2.png';
 import a1 from '../../../public/images/abt1.png';
@@ -15,13 +27,86 @@ import va from '../../../public/images/v1.png';
 import vb from '../../../public/images/v2.png';
 import vc from '../../../public/images/v3.png';
 
+// Animation variants
+const fadeInUpVariants = {
+  hidden: { 
+    opacity: 0,
+    y: 20,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: "easeOut"
+    }
+  }
+};
 
+const staggerContainerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2
+    }
+  }
+};
+
+// Components interfaces
 interface HighlightCardProps {
   title: string;
   description: string;
   color?: string;
 }
 
+// Social Links Component
+const SocialLinks = () => {
+  const socialLinks = [
+    {
+      icon: <FiInstagram size={24} />,
+      href: "https://instagram.com/acm_srm",
+      label: "Instagram"
+    },
+    {
+      icon: <FiLinkedin size={24} />,
+      href: "https://linkedin.com/company/acm-srm",
+      label: "LinkedIn"
+    },
+    {
+      icon: <SiDiscord size={24} />,
+      href: "https://discord.gg/acm-srm",
+      label: "Discord"
+    },
+    {
+      icon: <FiGithub size={24} />,
+      href: "https://github.com/acm-srm",
+      label: "GitHub"
+    }
+  ];
+
+  return (
+    <div className="fixed left-4 top-1/2 -translate-y-1/2 z-50 hidden lg:flex flex-col gap-6">
+      {socialLinks.map((link, index) => (
+        <motion.a
+          key={link.label}
+          href={link.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          initial={{ x: -20, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ delay: 0.5 + index * 0.1 }}
+          whileHover={{ scale: 1.2, x: 5 }}
+          className="text-gray-600 hover:text-black transition-colors duration-300"
+        >
+          {link.icon}
+        </motion.a>
+      ))}
+    </div>
+  );
+};
+
+// Original HighlightCard Component
 const HighlightCard: React.FC<HighlightCardProps> = ({ title, description, color = "bg-white" }) => (
   <motion.div
     initial={{ opacity: 0, y: 20 }}
@@ -38,6 +123,19 @@ const HighlightCard: React.FC<HighlightCardProps> = ({ title, description, color
   </motion.div>
 );
 
+// Scroll Progress Indicator
+const ScrollProgress = () => {
+  const { scrollYProgress } = useScroll();
+  
+  return (
+    <motion.div
+      className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#C4FCF0] via-[#FCE7E2] to-[#FDDC68] 
+        transform origin-left z-50"
+      style={{ scaleX: scrollYProgress }}
+    />
+  );
+};
+
 export default function AboutPage() {
   const { scrollYProgress } = useScroll();
   const y1 = useTransform(scrollYProgress, [0, 1], [0, -100]);
@@ -45,6 +143,8 @@ export default function AboutPage() {
 
   return (
     <div className="">
+      <ScrollProgress />
+      <SocialLinks />
       <Navigation/>
       <main className="pt-24 flex flex-col">
         {/* Hero Section */}
@@ -64,7 +164,7 @@ export default function AboutPage() {
             </p>
           </motion.div>
 
-          {/* Decorative elements */}
+          {/* Original Decorative elements */}
           <Image
             src={va}
             alt="fig"
@@ -82,7 +182,7 @@ export default function AboutPage() {
           />
         </div>
 
-        {/* Image Grid */}
+        {/* Original Image Grid */}
         <div className="flex justify-center items-start relative gap-1 md:gap-4 lg:gap-7">
           <Image
             src={img1}
@@ -105,108 +205,7 @@ export default function AboutPage() {
             className="w-[87px] h-[46px] md:w-[137px] md:h-[96px] lg:w-[275px] lg:h-[157px] rounded-xl lg:rounded-3xl transform -translate-y-1/2"
           />
         </div>
-
-        {/* Achievement Stats Section */}
-        <section className="py-16 relative overflow-hidden">
-          {/* Gradient Background */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#C4FCF0]/20 via-[#FCE7E2]/20 to-[#FDDC68]/20" />
-          
-          {/* Decorative Elements */}
-          <div className="absolute inset-0">
-            <div className="absolute top-0 left-0 w-64 h-64 bg-[#C4FCF0]/10 rounded-full blur-3xl transform -translate-x-1/2 -translate-y-1/2" />
-            <div className="absolute bottom-0 right-0 w-64 h-64 bg-[#FCE7E2]/10 rounded-full blur-3xl transform translate-x-1/2 translate-y-1/2" />
-          </div>
-
-          {/* Stats Content */}
-          <div className="max-w-7xl mx-auto px-4 relative z-10">
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              className="text-center mb-12"
-            >
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold font-title mb-4">
-                Our Impact
-              </h2>
-              <div className="h-1 w-20 bg-gradient-to-r from-[#C4FCF0] to-[#FCE7E2] mx-auto" />
-            </motion.div>
-
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-              {/* Events Stat */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 }}
-                className="relative group"
-              >
-                <div className="absolute inset-0 bg-gradient-to-br from-[#C4FCF0]/10 to-[#FCE7E2]/10 rounded-2xl transform rotate-6 group-hover:rotate-3 transition-transform duration-300" />
-                <div className="relative bg-white/80 backdrop-blur-lg rounded-2xl p-6 shadow-lg transform -rotate-3 group-hover:rotate-0 transition-transform duration-300">
-                  <div className="text-4xl md:text-5xl lg:text-6xl font-bold font-title mb-2 bg-gradient-to-r from-[#C4FCF0] to-[#FCE7E2] bg-clip-text text-transparent">
-                    50+
-                  </div>
-                  <div className="text-lg md:text-xl font-title tracking-wider text-gray-700">
-                    Events Organized
-                  </div>
-                </div>
-              </motion.div>
-
-              {/* Members Stat */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 }}
-                className="relative group"
-              >
-                <div className="absolute inset-0 bg-gradient-to-br from-[#FCE7E2]/10 to-[#FDDC68]/10 rounded-2xl transform rotate-6 group-hover:rotate-3 transition-transform duration-300" />
-                <div className="relative bg-white/80 backdrop-blur-lg rounded-2xl p-6 shadow-lg transform -rotate-3 group-hover:rotate-0 transition-transform duration-300">
-                  <div className="text-4xl md:text-5xl lg:text-6xl font-bold font-title mb-2 bg-gradient-to-r from-[#FCE7E2] to-[#FDDC68] bg-clip-text text-transparent">
-                    1000+
-                  </div>
-                  <div className="text-lg md:text-xl font-title tracking-wider text-gray-700">
-                    Active Members
-                  </div>
-                </div>
-              </motion.div>
-
-              {/* Projects Stat */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 }}
-                className="relative group"
-              >
-                <div className="absolute inset-0 bg-gradient-to-br from-[#FDDC68]/10 to-[#C4FCF0]/10 rounded-2xl transform rotate-6 group-hover:rotate-3 transition-transform duration-300" />
-                <div className="relative bg-white/80 backdrop-blur-lg rounded-2xl p-6 shadow-lg transform -rotate-3 group-hover:rotate-0 transition-transform duration-300">
-                  <div className="text-4xl md:text-5xl lg:text-6xl font-bold font-title mb-2 bg-gradient-to-r from-[#FDDC68] to-[#C4FCF0] bg-clip-text text-transparent">
-                    20+
-                  </div>
-                  <div className="text-lg md:text-xl font-title tracking-wider text-gray-700">
-                    Projects Completed
-                  </div>
-                </div>
-              </motion.div>
-
-              {/* Partners Stat */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4 }}
-                className="relative group"
-              >
-                <div className="absolute inset-0 bg-gradient-to-br from-[#FCE7E2]/10 to-[#C4FCF0]/10 rounded-2xl transform rotate-6 group-hover:rotate-3 transition-transform duration-300" />
-                <div className="relative bg-white/80 backdrop-blur-lg rounded-2xl p-6 shadow-lg transform -rotate-3 group-hover:rotate-0 transition-transform duration-300">
-                  <div className="text-4xl md:text-5xl lg:text-6xl font-bold font-title mb-2 bg-gradient-to-r from-[#FCE7E2] to-[#C4FCF0] bg-clip-text text-transparent">
-                    15+
-                  </div>
-                  <div className="text-lg md:text-xl font-title tracking-wider text-gray-700">
-                    Industry Partners
-                  </div>
-                </div>
-              </motion.div>
-            </div>
-          </div>
-        </section>
-
-        {/* Main Content */}
+        {/* Main Content - Original Empowering Minds Section */}
         <div>
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
@@ -227,6 +226,7 @@ export default function AboutPage() {
             leaders and changemakers.
           </motion.p>
 
+          {/* Original Vision Boxes Section */}
           <div className="px-2">
             {/* Vision Section */}
             <div className="flex flex-row justify-center items-center gap-2 md:gap-5 lg:gap-10 pt-4 md:pt-6 lg:pt-10">
@@ -249,8 +249,8 @@ export default function AboutPage() {
               </div>
             </div>
 
-{/* What We Do Section */}
-<div className="flex flex-row justify-center items-center gap-2 md:gap-5 lg:gap-10 pt-4 md:pt-6 lg:pt-10">
+            {/* What We Do Section */}
+            <div className="flex flex-row justify-center items-center gap-2 md:gap-5 lg:gap-10 pt-4 md:pt-6 lg:pt-10">
               <div className="bg-[#0A95DA] w-[181px] h-[146px] md:w-[251px] md:h-[206px] lg:w-[350px] lg:h-[310px] rounded-xl md:rounded-3xl py-1 px-2 md:py-5 md:px-2 lg:py-10 lg:px-8">
                 <h1 className="text-black text-center font-bold font-title tracking-widest text-2xl md:text-4xl lg:text-6xl">What We Do</h1>
                 <p className="font-title text-black text-center text-[9px] md:text-[12px] lg:text-[16px] text-wrap md:text-wrap tracking-widest pt-1 lg:pt-4">
@@ -296,103 +296,405 @@ export default function AboutPage() {
             </div>
           </div>
 
-          {/* Technical Domains Section */}
-          <section className="py-20 px-4 bg-gradient-to-b from-white to-gray-50">
-            <div className="max-w-7xl mx-auto">
+          {/* ACM India Section */}
+          <section className="py-20 px-4 md:px-8 bg-gradient-to-b from-white to-[#C4FCF0]/10">
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={staggerContainerVariants}
+              className="max-w-7xl mx-auto"
+            >
               <motion.h2 
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                variants={fadeInUpVariants}
                 className="text-4xl md:text-5xl lg:text-6xl font-bold font-title text-center mb-16"
               >
-                Technical Domains
+                About ACM India
               </motion.h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <HighlightCard
-                  title="AI & Machine Learning"
-                  description="Exploring cutting-edge AI technologies and applications"
-                  color="bg-[#C4FCF0]"
-                />
-                <HighlightCard
-                  title="Web Development"
-                  description="Building modern web applications and services"
-                  color="bg-[#FCE7E2]"
-                />
-                <HighlightCard
-                  title="Blockchain"
-                  description="Innovating with distributed ledger technologies"
-                  color="bg-[#FDDC68]"
-                />
-                <HighlightCard
-                  title="Cloud Computing"
-                  description="Leveraging cloud platforms and services"
-                  color="bg-[#0A95DA]/20"
-                />
-                <HighlightCard
-                  title="Cybersecurity"
-                  description="Securing digital assets and infrastructure"
-                  color="bg-[#FCE7E2]/40"
-                />
-                <HighlightCard
-                  title="IoT & Robotics"
-                  description="Creating smart and connected systems"
-                  color="bg-[#C4FCF0]/30"
-                />
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <motion.div 
+                  variants={fadeInUpVariants}
+                  className="bg-white/80 backdrop-blur-sm p-8 rounded-3xl shadow-lg group hover:shadow-xl transition-all duration-300"
+                >
+                  <div className="relative">
+                    <div className="absolute -inset-1 bg-gradient-to-r from-[#C4FCF0] to-[#FCE7E2] rounded-3xl blur opacity-20 group-hover:opacity-30 transition duration-300" />
+                    <div className="relative bg-white p-8 rounded-2xl">
+                      <p className="text-lg leading-relaxed mb-6">
+                        ACM India is pioneering the advancement of computing as a science and profession 
+                        throughout India. With a vast network of professionals and students, we're at the 
+                        forefront of technological innovation and education.
+                      </p>
+                      <p className="text-lg leading-relaxed mb-6">
+                        Our mission encompasses organizing computing education activities, supporting 
+                        research, and fostering collaborations between academia and industry.
+                      </p>
+                      <Link 
+                        href="https://india.acm.org/" 
+                        target="_blank"
+                        className="inline-flex items-center gap-2 text-black font-semibold hover:text-[#0A95DA] transition-colors duration-300 group"
+                      >
+                        Learn more about ACM India 
+                        <span className="transform group-hover:translate-x-1 transition-transform">→</span>
+                      </Link>
+                    </div>
+                  </div>
+                </motion.div>
+
+                <motion.div 
+                  variants={fadeInUpVariants}
+                  className="relative h-[400px] rounded-3xl overflow-hidden group"
+                >
+                  <Image
+                    src={a1}
+                    alt="ACM India"
+                    fill
+                    className="object-cover transform transition-transform duration-700 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 p-8">
+                    <motion.div
+                      initial={{ y: 20, opacity: 0 }}
+                      whileInView={{ y: 0, opacity: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.3 }}
+                      className="bg-white/90 backdrop-blur-sm rounded-2xl p-4"
+                    >
+                      <p className="text-sm font-medium text-gray-600">
+                        Join India's largest computing society and be part of the technological revolution
+                      </p>
+                    </motion.div>
+                  </div>
+                </motion.div>
               </div>
-            </div>
+            </motion.div>
           </section>
 
-          {/* Join Us Section */}
-          <section className="py-20 px-4 bg-gradient-to-r from-[#C4FCF0]/20 to-[#FCE7E2]/20">
-            <div className="max-w-4xl mx-auto text-center">
-              <motion.h2
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                className="text-4xl md:text-5xl lg:text-6xl font-bold font-title mb-8"
+          {/* SRM Section */}
+          <section className="py-20 px-4 md:px-8 bg-gradient-to-b from-[#C4FCF0]/10 to-[#FCE7E2]/10">
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={staggerContainerVariants}
+              className="max-w-7xl mx-auto"
+            >
+              <motion.h2 
+                variants={fadeInUpVariants}
+                className="text-4xl md:text-5xl lg:text-6xl font-bold font-title text-center mb-16"
               >
-                Join the Journey
+                About SRM
               </motion.h2>
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 }}
-                className="text-xl md:text-2xl lg:text-3xl font-title mb-12"
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <motion.div 
+                  variants={fadeInUpVariants}
+                  className="relative h-[400px] rounded-3xl overflow-hidden group order-2 md:order-1"
+                >
+                  <Image
+                    src={a2}
+                    alt="SRM Campus"
+                    fill
+                    className="object-cover transform transition-transform duration-700 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 p-8">
+                    <motion.div
+                      initial={{ y: 20, opacity: 0 }}
+                      whileInView={{ y: 0, opacity: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.3 }}
+                      className="bg-white/90 backdrop-blur-sm rounded-2xl p-4"
+                    >
+                      <p className="text-sm font-medium text-gray-600">
+                        A world-class institution fostering excellence in education and research
+                      </p>
+                    </motion.div>
+                  </div>
+                </motion.div>
+
+                <motion.div 
+                  variants={fadeInUpVariants}
+                  className="bg-white/80 backdrop-blur-sm p-8 rounded-3xl shadow-lg group hover:shadow-xl 
+                    transition-all duration-300 order-1 md:order-2"
+                >
+                  <div className="relative">
+                    <div className="absolute -inset-1 bg-gradient-to-r from-[#FCE7E2] to-[#C4FCF0] rounded-3xl 
+                      blur opacity-20 group-hover:opacity-30 transition duration-300" />
+                    <div className="relative bg-white p-8 rounded-2xl">
+                      <p className="text-lg leading-relaxed mb-6">
+                        SRM Institute of Science and Technology stands as a beacon of academic excellence 
+                        and innovation. Our institution has consistently ranked among India's top universities, 
+                        known for its cutting-edge research facilities and industry-aligned curriculum.
+                      </p>
+                      <Link 
+                        href="https://www.srmist.edu.in/" 
+                        target="_blank"
+                        className="inline-flex items-center gap-2 text-black font-semibold hover:text-[#0A95DA] 
+                          transition-colors duration-300 group"
+                      >
+                        Learn more about SRM 
+                        <span className="transform group-hover:translate-x-1 transition-transform">→</span>
+                      </Link>
+                    </div>
+                  </div>
+                </motion.div>
+              </div>
+            </motion.div>
+          </section>
+
+{/* Achievements Section */}
+<section className="py-20 px-4 md:px-8 bg-gradient-to-b from-[#FCE7E2]/10 to-white">
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={staggerContainerVariants}
+              className="max-w-7xl mx-auto"
+            >
+              <motion.h2 
+                variants={fadeInUpVariants}
+                className="text-4xl md:text-5xl lg:text-6xl font-bold font-title text-center mb-16"
               >
-                Be part of a community that's shaping the future of technology
-              </motion.p>
-              <motion.button
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4 }}
-                className="bg-black text-white font-title text-xl md:text-2xl px-12 py-4 rounded-full
-                  hover:bg-gray-800 transition-all duration-300 hover:scale-105"
+                Our Achievements
+              </motion.h2>
+
+              {/* Ambassador Achievement Card */}
+              <motion.div
+                variants={fadeInUpVariants}
+                className="mb-12 relative group"
               >
-                Join ACM SRM
-              </motion.button>
+                <div className="absolute inset-0 bg-gradient-to-r from-[#C4FCF0]/20 to-[#FCE7E2]/20 rounded-3xl 
+                  transform rotate-2 transition-transform duration-300 group-hover:rotate-0" />
+                <div className="relative bg-white/90 p-8 rounded-3xl shadow-lg transform -rotate-1 
+                  transition-all duration-300 group-hover:rotate-0 group-hover:-translate-y-2">
+                  <div className="flex flex-col md:flex-row gap-8 items-center">
+                    <div className="w-48 h-48 relative overflow-hidden rounded-2xl">
+                      <Image 
+                        src={a3}
+                        alt="Dr. M. Suchithra"
+                        fill
+                        className="object-cover transform transition-transform duration-300 group-hover:scale-110"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+                    </div>
+                    <div className="flex-1">
+                      <div className="flex items-center gap-4 mb-4">
+                        <h3 className="text-3xl font-bold font-title">ACM Ambassador 2023-2024</h3>
+                        <motion.div
+                          animate={{ rotate: [0, 10, 0] }}
+                          transition={{ duration: 2, repeat: Infinity }}
+                          className="text-3xl"
+                        >
+                          🏆
+                        </motion.div>
+                      </div>
+                      <p className="text-xl text-gray-600 mb-4 font-title">Dr. M. Suchithra</p>
+                      <p className="text-gray-700 leading-relaxed">
+                        SRM ACM Student Chapter Faculty Sponsor & Associate Professor, C. Tech, SCO, SRMIST. 
+                        Awarded for outstanding contributions and leadership in ACM. Her dedication has been 
+                        instrumental in elevating our chapter's achievements and fostering a culture of excellence.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Surakshitha Achievement Card */}
+              <motion.div
+                variants={fadeInUpVariants}
+                className="relative group"
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-[#FCE7E2]/20 to-[#FDDC68]/20 rounded-3xl 
+                  transform rotate-2 transition-transform duration-300 group-hover:rotate-0" />
+                <div className="relative bg-white/90 p-8 rounded-3xl shadow-lg transform -rotate-1 
+                  transition-all duration-300 group-hover:rotate-0 group-hover:-translate-y-2">
+                  <div className="flex flex-col md:flex-row gap-8 items-center">
+                    <div className="w-48 h-48 relative overflow-hidden rounded-2xl bg-gradient-to-tr 
+                      from-[#C4FCF0] to-[#FCE7E2]">
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <motion.span 
+                          animate={{ 
+                            scale: [1, 1.2, 1],
+                            rotate: [0, 10, 0]
+                          }}
+                          transition={{ duration: 3, repeat: Infinity }}
+                          className="text-6xl"
+                        >
+                          👑
+                        </motion.span>
+                      </div>
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-3xl font-bold font-title mb-2">Chapter Chair</h3>
+                      <p className="text-xl text-gray-600 mb-4 font-title">Surakshitha</p>
+                      <p className="text-gray-700 leading-relaxed">
+                        Leading our chapter with vision and dedication. As our Chapter Chair, Surakshitha guides 
+                        our initiatives and ensures we maintain the highest standards of technical excellence 
+                        and community engagement.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </motion.div>
+          </section>
+          <GlobalImpact />
+          {/* Video Section - SRM ACM Wrapped */}
+          <section className="py-20 px-4 md:px-8 bg-gradient-to-b from-white to-[#C4FCF0]/10">
+          
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={staggerContainerVariants}
+              className="max-w-7xl mx-auto"
+            >
+              <motion.h2 
+                variants={fadeInUpVariants}
+                className="text-4xl md:text-5xl lg:text-6xl font-bold font-title text-center mb-16"
+              >
+                SRM ACM Wrapped
+              </motion.h2>
+              
+              <motion.div 
+                variants={fadeInUpVariants}
+                className="relative rounded-3xl overflow-hidden shadow-2xl bg-black"
+              >
+                <div className="aspect-video relative">
+                  <iframe
+                    src="https://www.youtube.com/embed/xxflPg-T0Y4"
+                    className="absolute inset-0 w-full h-full"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
+                </div>
+              </motion.div>
+
+              <motion.div
+                variants={fadeInUpVariants}
+                className="mt-8 text-center"
+              >
+                <p className="text-xl text-gray-600">
+                  Relive our journey through the year's most impactful moments
+                </p>
+              </motion.div>
+            </motion.div>
+          </section>
+
+          {/* Enhanced Call to Action Section */}
+          <section className="py-20 px-4 relative overflow-hidden">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="absolute inset-0"
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-[#C4FCF0]/20 via-[#FCE7E2]/20 to-[#FDDC68]/20" />
+              <motion.div
+                animate={{ 
+                  scale: [1, 1.2, 1],
+                  opacity: [0.3, 0.5, 0.3]
+                }}
+                transition={{ duration: 10, repeat: Infinity }}
+                className="absolute top-0 right-0 w-96 h-96 bg-[#C4FCF0]/30 rounded-full blur-3xl"
+              />
+              <motion.div
+                animate={{ 
+                  scale: [1, 1.1, 1],
+                  opacity: [0.2, 0.4, 0.2]
+                }}
+                transition={{ duration: 8, repeat: Infinity, delay: 1 }}
+                className="absolute bottom-0 left-0 w-96 h-96 bg-[#FCE7E2]/30 rounded-full blur-3xl"
+              />
+            </motion.div>
+
+            <div className="max-w-4xl mx-auto text-center relative z-10">
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={staggerContainerVariants}
+              >
+                <motion.h2
+                  variants={fadeInUpVariants}
+                  className="text-4xl md:text-5xl lg:text-6xl font-bold font-title mb-8"
+                >
+                  Join Our Community
+                </motion.h2>
+                <motion.p
+                  variants={fadeInUpVariants}
+                  className="text-xl md:text-2xl lg:text-3xl font-title mb-12"
+                >
+                  Be part of a vibrant tech community shaping the future
+                </motion.p>
+
+                {/* Action Buttons */}
+                <motion.div
+                  variants={fadeInUpVariants}
+                  className="flex flex-wrap justify-center gap-6"
+                >
+                  {/* Primary CTA */}
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="relative group"
+                  >
+                    <div className="absolute -inset-1 bg-gradient-to-r from-[#C4FCF0] via-[#FCE7E2] to-[#FDDC68] 
+                      rounded-full opacity-70 group-hover:opacity-100 blur transition duration-1000 
+                      group-hover:duration-200" />
+                    <Link 
+                      href="/join"
+                      className="relative bg-black text-white font-title text-xl md:text-2xl px-12 py-4 
+                        rounded-full inline-block transition-all duration-300"
+                    >
+                      Join ACM SRM
+                    </Link>
+                  </motion.div>
+
+                  {/* Discord CTA */}
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <Link 
+                      href="https://discord.gg/acm-srm"
+                      target="_blank"
+                      className="bg-[#5865F2] text-white font-title text-xl md:text-2xl px-12 py-4 
+                        rounded-full inline-flex items-center gap-3 hover:bg-[#4752C4] transition-colors duration-300"
+                    >
+                      <SiDiscord className="text-2xl" />
+                      Join Discord
+                    </Link>
+                  </motion.div>
+                </motion.div>
+
+                {/* Social Links */}
+                <motion.div 
+                  variants={fadeInUpVariants}
+                  className="mt-12 flex flex-wrap justify-center gap-8"
+                >
+                  {[
+                    { icon: <FiInstagram size={24} />, label: "Instagram", href: "https://instagram.com/acm_srm" },
+                    { icon: <FiLinkedin size={24} />, label: "LinkedIn", href: "https://linkedin.com/company/acm-srm" },
+                    { icon: <FiGithub size={24} />, label: "GitHub", href: "https://github.com/acm-srm" }
+                  ].map((social, index) => (
+                    <Link
+                      key={social.label}
+                      href={social.href}
+                      target="_blank"
+                      className="flex items-center gap-2 text-gray-600 hover:text-black transition-colors duration-300"
+                    >
+                      {social.icon}
+                      <span>{social.label}</span>
+                    </Link>
+                  ))}
+                </motion.div>
+              </motion.div>
             </div>
           </section>
 
           {/* Footer */}
-          <footer className="w-full px-4 md:px-32 py-16 border-t border-gray-200">
-            <div className="max-w-[1920px] mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
-              <div className="flex items-center gap-6">
-                <Image
-                  src="/images/acm-logo.svg"
-                  alt="ACM Logo"
-                  width={80}
-                  height={80}
-                  priority
-                />
-                <div className="text-xl font-title">
-                  SRMIST-KTR
-                  <br />
-                  STUDENT CHAPTER
-                </div>
-              </div>
-              <p className="text-sm font-poly">
-                ACM SRM © {new Date().getFullYear()}. All Rights Reserved.
-              </p>
-            </div>
-          </footer>
+          <Footer />
         </div>
       </main>
     </div>
