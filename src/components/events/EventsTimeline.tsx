@@ -53,27 +53,33 @@ const EventsTimeline = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Effect to handle body scroll lock when modal is open
-  useEffect(() => {
-    const handleScroll = (e: Event) => {
-      if (isModalOpen) {
-        e.preventDefault();
-        e.stopPropagation();
-      }
-    };
 
+// Effect to handle body scroll lock when modal is open
+useEffect(() => {
+  const handleScroll = (e: TouchEvent | WheelEvent) => {
     if (isModalOpen) {
-      document.body.style.overflow = 'hidden';
-      document.addEventListener('scroll', handleScroll, { passive: false });
-    } else {
-      document.body.style.overflow = 'unset';
-      document.removeEventListener('scroll', handleScroll);
+      e.preventDefault();
+      e.stopPropagation();
     }
+  };
 
-    return () => {
-      document.body.style.overflow = 'unset';
-      document.removeEventListener('scroll', handleScroll);
-    };
-  }, [isModalOpen]);
+  if (isModalOpen) {
+    document.body.style.overflow = 'hidden';
+    document.addEventListener('wheel', handleScroll as EventListener, { passive: false });
+    document.addEventListener('touchmove', handleScroll as EventListener, { passive: false });
+  } else {
+    document.body.style.overflow = 'unset';
+    document.removeEventListener('wheel', handleScroll as EventListener);
+    document.removeEventListener('touchmove', handleScroll as EventListener);
+  }
+
+  return () => {
+    document.body.style.overflow = 'unset';
+    document.removeEventListener('wheel', handleScroll as EventListener);
+    document.removeEventListener('touchmove', handleScroll as EventListener);
+  };
+}, [isModalOpen]);
+
 
   useEffect(() => {
     const container = containerRef.current;
