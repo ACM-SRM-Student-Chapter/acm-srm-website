@@ -21,7 +21,7 @@ import {
 
 // Types
 interface StatCardProps {
-  icon: string;
+  icon: React.ReactNode;
   number: string;
   label: string;
   color: string;
@@ -29,7 +29,7 @@ interface StatCardProps {
 }
 
 interface TechCardProps {
-  icon: string;
+  icon: React.ReactNode;
   title: string;
   description: string;
   color: string;
