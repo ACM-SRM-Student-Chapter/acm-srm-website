@@ -13,7 +13,7 @@ interface GalleryItem {
   type: 'image' | 'video';
   source: string;
   caption: string;
-  thumbnail?: string; // For video thumbnails
+  thumbnail?: string; 
 }
 
 interface EventDetails {
@@ -23,8 +23,9 @@ interface EventDetails {
   schedule?: string[];
   speakers?: string[];
   highlights?: string[];
-  industrialPartners: string[];
+  industrialPartners?: string[];
   prizes?: string[];
+  achievements?: string[];
   themes?: string[];
   perks?: string[];
   topics?: string[];
@@ -33,6 +34,10 @@ interface EventDetails {
   requirements?: string[];
   tracks?: string[];
   takeaways?: string[];
+  interviewers?: string[];
+  winners?: string[];
+  outcomes?: string[];
+  vision?: string[];
 }
 
 interface Event {
@@ -52,9 +57,6 @@ const EventsTimeline = () => {
   const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // Effect to handle body scroll lock when modal is open
-
-// Effect to handle body scroll lock when modal is open
 useEffect(() => {
   const handleScroll = (e: TouchEvent | WheelEvent) => {
     if (isModalOpen) {
@@ -217,7 +219,7 @@ useEffect(() => {
           "Prof. Venkatesh Raman, President of ACM India",
           "Dr. M. Suchithra, Faculty Sponsor SRM ACM Student Chapter",
           "S Sembon Surakshitha"
-        ]
+        ],
       }
     },
     {
