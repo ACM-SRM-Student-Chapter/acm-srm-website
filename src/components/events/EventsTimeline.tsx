@@ -38,6 +38,7 @@ interface EventDetails {
   winners?: string[];
   outcomes?: string[];
   vision?: string[];
+  fullDescription?: string;
 }
 
 interface Event {
@@ -170,8 +171,11 @@ useEffect(() => {
           "Innovative solutions for real-world problems",
           "Collaborative innovation environment",
           "Diverse range of ideas presented"
-        ]
+        ],
+        fullDescription: 
+          "Idea Forge was a resounding success, providing a dynamic platform for 15 teams to tackle real-world challenges with innovative solutions. Participants showcased remarkable creativity and problem-solving skills through brainstorming, refining, and presenting their ideas. The event highlighted the power of collaboration and ingenuity, and we extend our gratitude to all participants for their enthusiasm and dedication. Idea Forge marks the beginning of exciting possibilities, and we look forward to seeing these ideas evolve and create an impact."
       }
+
     },
     {
       date: "15",
@@ -220,12 +224,13 @@ useEffect(() => {
           "Dr. M. Suchithra, Faculty Sponsor SRM ACM Student Chapter",
           "S Sembon Surakshitha"
         ],
+        fullDescription: "The Orientation Session marked a vibrant restart for our community, setting an inspiring tone for the year ahead. Led by Prof. Venkatesh Raman, President of ACM India, the session highlighted key tech trends, the importance of innovation, and the transformative role of collaboration. Prof. Raman’s insights on leveraging technology and fostering growth captivated attendees, motivating them to embrace excellence. Participants were introduced to the chapter’s resources, events, and initiatives aimed at skill-building and impactful contributions. The session laid the groundwork for a year of growth, collaboration, and meaningful achievements in the tech space."
       }
     },
     {
       date: "01",
       month: "August",
-      title: "Pair Programming with JA Assure",
+      title: "Pair Programming",
       description: "A dynamic hackathon collaboration with JA Assure, Singapore, offering internship opportunities for winners alongside cash prizes.",
       lottieUrl: "https://lottie.host/63596568-196a-43e2-8487-03e8dd0b4876/rojqpKfNM6.lottie",
       gallery: [
@@ -277,7 +282,8 @@ useEffect(() => {
           "1st Place: Team BBSx2 (Rs 15,000)",
           "2nd Place: Team NEO (Rs 10,000)",
           "3rd Place: Team In Ctrl (Rs 5000)"
-        ]
+        ],
+        fullDescription:"In collaboration with Singapore-based JA Assure, our latest Hackathon brought together 88 teams to tackle complex challenges and develop innovative solutions in a high-energy, collaborative environment. Participants formed teams to brainstorm, prototype, and present their ideas, with the top three teams earning cash prizes and guaranteed internship opportunities at JA Assure, providing valuable industry exposure. The event showcased exceptional creativity and problem-solving skills, bridging academic talent with real-world industry applications."
       }
     },
     {
@@ -333,7 +339,8 @@ useEffect(() => {
           "Mr. Anoop Menon – Assistant Professor of Architecture",
           "Dr. Vadivelan – Professor of Pediatric Physiotherapy",
           "Dr. Shantanu Patil – Director of Entrepreneurship"
-        ]
+        ],
+        fullDescription:"The SRM ACM Health Conclave 2024 was a highly successful event that brought together over 55 participants from academia and industry to explore the transformative intersection of healthcare and next-generation computing technologies. Featuring thought-provoking talks by renowned experts, the conclave delved into topics like generative AI, deepfake detection, and innovations in the startup ecosystem, highlighting their potential to revolutionize healthcare delivery and public health research. The event also fostered creativity and collaboration through an interactive idea-pitching session, where students presented innovative solutions evaluated for their impact and feasibility. Concluding with awards for outstanding contributions, the conclave showcased the power of technology to drive progress in healthcare while inspiring participants to push the boundaries of innovation and entrepreneurship."
       }
     },
     {
@@ -394,7 +401,8 @@ useEffect(() => {
           "Dr. Shahzad Ahmed - Research Assistant Professor, Hanyang University",
           "Dr. Ganesh Neelakanta Iyer - Lecturer, NUS",
           "Mr. S. Gunasekaran - Director, Pixibit Pvt. Ltd."
-        ]
+        ],
+        fullDescription:"The Faculty Development Program (FDP), themed “Unleashing Creativity: Harnessing Generative AI for Next-Gen Innovation,” was held from 25th to 29th November 2024 at SRMIST, drawing over 100 participants to explore Generative AI applications. The sessions covered fundamentals, advanced topics, and ethical considerations, with notable speakers including Dr. Rajeswaran V from Capgemini, Dr. Tahir Mahmood from Dongguk University, and Dr. Bhargav Sagiraju from NUS. Highlights included discussions on AI applications in healthcare, media, fashion, and medical sensors, along with future directions in software engineering and personalized user experiences. The program provided valuable insights and hands-on experience, empowering participants to integrate Generative AI into their fields."
       }
     },
     {
@@ -427,7 +435,7 @@ useEffect(() => {
       ],
       details: {
         venue: "1st Floor, Tech Park, SRMIST",
-        time: "5:00 AM - 6:30 PM",
+        time: "5:00PM",
         duration: "21 August - 28 October 2024",
         interviewers: [
           "Nihal Sivapuram",
@@ -453,7 +461,8 @@ useEffect(() => {
           "Drive transformative initiatives",
           "Cultivate professionalism and inclusivity",
           "Achieve unprecedented milestones"
-        ]
+        ],
+        fullDescription:"The conclusion of our recent recruitment drive marks a transformative chapter, welcoming dynamic talent and diverse expertise that align perfectly with our mission of fostering innovation and collaboration. With an exceptional pool of new members bringing unique skills and fresh perspectives, we are strategically positioned to tackle challenges, achieve milestones, and drive impactful initiatives. Their creativity and commitment to excellence promise to redefine our benchmarks, enable meaningful contributions to the community, and strengthen our legacy as a platform for innovation and growth. Together, we are poised for unprecedented accomplishments and a future of inclusivity, professionalism, and success."
       }
     }
   ];
@@ -572,9 +581,9 @@ useEffect(() => {
     </motion.div>
   );
 
-  // Enhanced DetailsModal Component with Gallery
   const DetailsModal = ({ event, onClose }: { event: Event; onClose: () => void }) => {
     const [selectedImage, setSelectedImage] = useState<number | null>(null);
+    const [activeSection, setActiveSection] = useState('overview');
     const modalContentRef = useRef<HTMLDivElement>(null);
     
     useEffect(() => {
@@ -592,180 +601,227 @@ useEffect(() => {
       setSelectedImage(selectedImage === 0 ? event.gallery.length - 1 : selectedImage - 1);
     };
 
+    const sections = [
+      { id: 'overview', label: 'Overview' },
+      { id: 'gallery', label: 'Gallery' },
+      { id: 'details', label: 'Event Details' },
+      { id: 'highlights', label: 'Highlights & Outcomes' }
+    ];
+
     return (
       <>
         <motion.div 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-50 flex items-center justify-center px-4 py-6 overflow-hidden"
-          onClick={(e) => {
-            if (e.target === e.currentTarget) onClose();
-          }}
+          className="fixed inset-0 z-50 flex items-center justify-center px-4 py-6"
         >
-          <div className="fixed inset-0 bg-black/40 backdrop-blur-sm" />
+          <div className="fixed inset-0 bg-black/40 backdrop-blur-sm" onClick={onClose} />
+          
           <motion.div 
-              initial={{ scale: 0.95, y: 20 }}
-              animate={{ scale: 1, y: 0 }}
-              exit={{ scale: 0.95, y: 20 }}
-              className="relative bg-white rounded-2xl w-full max-w-4xl max-h-[90vh] shadow-2xl overflow-hidden" 
-              ref={modalContentRef}
-            >
-            {/* Background Pattern */}
-            <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
-              <svg width="100%" height="100%">
-                <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-                  <path d="M 40 0 L 0 0 0 40" fill="none" stroke="black" strokeWidth="1"/>
-                </pattern>
-                <rect width="100%" height="100%" fill="url(#grid)" />
-              </svg>
+            initial={{ scale: 0.95, y: 20 }}
+            animate={{ scale: 1, y: 0 }}
+            exit={{ scale: 0.95, y: 20 }}
+            className="relative bg-white rounded-2xl w-full max-w-4xl max-h-[90vh] shadow-2xl overflow-hidden" 
+            ref={modalContentRef}
+          >
+            {/* Header */}
+            <div className="sticky top-0 z-10 bg-white border-b border-gray-100 p-6">
+              <div className="flex items-start justify-between mb-6">
+                <div>
+                  <h3 className="text-4xl font-title font-bold mb-2">{event.title}</h3>
+                  <div className="flex items-center gap-4 text-gray-600">
+                    <span className="font-poly">{event.date} {event.month}</span>
+                    <div className="h-1.5 w-1.5 rounded-full bg-gray-300" />
+                    <span className="font-poly">{event.details.venue}</span>
+                  </div>
+                </div>
+                <button 
+                  onClick={onClose}
+                  className="p-2 text-gray-400 hover:text-gray-600 transition-colors"
+                >
+                  <X size={24} />
+                </button>
+              </div>
+
+              {/* Navigation Tabs */}
+              <div className="flex gap-6 border-b border-gray-100">
+                {sections.map((section) => (
+                  <button
+                    key={section.id}
+                    onClick={() => setActiveSection(section.id)}
+                    className={`pb-3 px-1 relative font-poly ${
+                      activeSection === section.id 
+                        ? 'text-black font-semibold' 
+                        : 'text-gray-400 hover:text-gray-600'
+                    }`}
+                  >
+                    {section.label}
+                    {activeSection === section.id && (
+                      <motion.div 
+                        layoutId="activeTab"
+                        className="absolute bottom-0 left-0 right-0 h-0.5 bg-black"
+                      />
+                    )}
+                  </button>
+                ))}
+              </div>
             </div>
 
-
-            <div 
-              className="relative h-full overflow-y-auto" 
-              style={{ maxHeight: '90vh' }}
-              onWheel={(e) => {
-                e.stopPropagation();  
-                const target = e.currentTarget;
-                target.scrollTop += e.deltaY;
-              }}
-            >
-              <div className="p-6 md:p-8">
-                {/* Header */}
-                <div className="flex items-start justify-between mb-8">
-                  <div>
-                    <motion.h3 
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      className="text-4xl md:text-5xl font-title font-bold mb-2"
-                    >
-                      {event.title}
-                    </motion.h3>
-                    <motion.div
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.1 }}
-                      className="flex items-center gap-4"
-                    >
-                      <span className="text-black/60 font-poly">
-                        {event.date} {event.month}
-                      </span>
-                      <div className="h-1.5 w-1.5 rounded-full bg-black/20" />
-                      <span className="text-black/60 font-poly">
-                        {event.details.venue}
-                      </span>
-                    </motion.div>
-                  </div>
-                  <button 
-                    onClick={onClose}
-                    className="text-3xl text-black/40 hover:text-black transition-colors"
-                  >
-                    ×
-                  </button>
-                </div>
-
-                {/* Gallery Section */}
+            {/* Content Area */}
+            <div className="p-6 overflow-y-auto" style={{ maxHeight: 'calc(90vh - 180px)' }}>
+              <AnimatePresence mode="wait">
                 <motion.div
+                  key={activeSection}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.2 }}
-                  className="mb-8"
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.2 }}
                 >
-                  <h4 className="text-xl font-title font-semibold mb-4">Gallery</h4>
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    {event.gallery.map((item, idx) => (
-                      <motion.div
-                        key={idx}
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ delay: 0.3 + idx * 0.1 }}
-                        onClick={() => setSelectedImage(idx)}
-                        className="group relative aspect-square cursor-pointer overflow-hidden rounded-lg"
-                      >
-                        <Image
-                          src={item.type === 'video' ? (item.thumbnail || '/images/event2.jpeg') : item.source}
-                          alt={item.caption}
-                          fill
-                          className="object-cover transition-transform duration-300 group-hover:scale-105"
-                        />
-                        {item.type === 'video' && (
-                          <div className="absolute inset-0 flex items-center justify-center">
-                            <div className="w-12 h-12 rounded-full bg-black/50 flex items-center justify-center">
-                              <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                              </svg>
-                            </div>
+                  {/* Overview Section */}
+                  {activeSection === 'overview' && (
+                    <div className="space-y-8">
+                      <div>
+                        <h4 className="text-xl font-semibold mb-4 font-title">About the Event</h4>
+                        <p className="text-gray-600 leading-relaxed font-poly">
+                          {event.details.fullDescription || event.description}
+                        </p>
+                      </div>
+                      {event.details.schedule && (
+                        <div>
+                          <h4 className="text-xl font-semibold mb-4 font-title">Schedule</h4>
+                          <div className="space-y-3">
+                            {event.details.schedule.map((item, idx) => (
+                              <div key={idx} className="flex gap-4 items-start">
+                                <div className="w-2 h-2 rounded-full bg-gray-300 mt-2 flex-shrink-0" />
+                                <p className="text-gray-600 font-poly">{item}</p>
+                              </div>
+                            ))}
                           </div>
-                        )}
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent 
-                          opacity-0 group-hover:opacity-100 transition-opacity duration-300" 
-                        />
-                        <div className="absolute bottom-0 left-0 right-0 p-3 text-white text-sm
-                          transform translate-y-full group-hover:translate-y-0 transition-transform duration-300"
-                        >
-                          {item.caption}
                         </div>
-                      </motion.div>
-                    ))}
-                  </div>
-                </motion.div>
-
-{/* Event Details */}
-                <div className="space-y-8">
-                  {Object.entries(event.details).map(([key, value], index) => (
-                    <motion.div 
-                      key={key}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.4 + index * 0.1 }}
-                      className="space-y-3"
-                    >
-                      <h4 className="text-xl font-title font-semibold capitalize">{key}</h4>
-                      {Array.isArray(value) ? (
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                          {value.map((item, idx) => (
-                            <div 
-                              key={idx} 
-                              className="flex items-center gap-3 text-black/70 font-poly"
-                            >
-                              <span className="w-1.5 h-1.5 bg-black/30 rounded-full flex-shrink-0" />
-                              {item}
-                            </div>
-                          ))}
-                        </div>
-                      ) : (
-                        <p className="text-black/70 font-poly">{value}</p>
                       )}
-                    </motion.div>
-                  ))}
-                </div>
+                      {event.details.speakers && (
+                        <div>
+                          <h4 className="text-xl font-semibold mb-4 font-title">Speakers</h4>
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            {event.details.speakers.map((speaker, idx) => (
+                              <div key={idx} className="flex items-start gap-3">
+                                <div className="w-2 h-2 rounded-full bg-gray-300 mt-2 flex-shrink-0" />
+                                <p className="text-gray-600 font-poly">{speaker}</p>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  )}
 
-                {/* Footer */}
-                <motion.div 
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.8 }}
-                  className="mt-8 pt-8 border-t border-black/10"
-                >
-                  <div className="flex justify-end">
-                    <button
-                      onClick={onClose}
-                      className="text-black/60 hover:text-black transition-colors font-poly
-                        flex items-center gap-2 group"
-                    >
-                      Back to Timeline
-                      <span className="transform group-hover:translate-x-1 transition-transform">→</span>
-                    </button>
-                  </div>
-                </motion.div>
+                  {/* Gallery Section */}
+                  {activeSection === 'gallery' && (
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                      {event.gallery.map((item, idx) => (
+                        <motion.div
+                          key={idx}
+                          initial={{ opacity: 0, scale: 0.95 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{ delay: idx * 0.1 }}
+                          onClick={() => setSelectedImage(idx)}
+                          className="group relative aspect-square cursor-pointer overflow-hidden rounded-lg"
+                        >
+                          <Image
+                            src={item.source}
+                            alt={item.caption}
+                            fill
+                            className="object-cover transition-transform duration-300 group-hover:scale-105"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent 
+                            opacity-0 group-hover:opacity-100 transition-opacity duration-300" 
+                          />
+                          <p className="absolute bottom-0 left-0 right-0 p-3 text-white text-sm font-poly
+                            transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                            {item.caption}
+                          </p>
+                        </motion.div>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* Details Section */}
+                  {activeSection === 'details' && (
+                    <div className="space-y-8">
+                      {Object.entries(event.details).map(([key, value]) => {
+                        if (Array.isArray(value) && value.length > 0 && 
+                            !['schedule', 'highlights', 'outcomes', 'vision'].includes(key)) {
+                          return (
+                            <div key={key}>
+                              <h4 className="text-xl font-semibold mb-4 font-title capitalize">
+                                {key.replace(/([A-Z])/g, ' $1').trim()}
+                              </h4>
+                              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                {value.map((item, idx) => (
+                                  <div key={idx} className="flex items-center gap-3 text-gray-600">
+                                    <span className="w-1.5 h-1.5 bg-gray-300 rounded-full flex-shrink-0" />
+                                    <span className="font-poly">{item}</span>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          );
+                        }
+                        return null;
+                      })}
+                    </div>
+                  )}
+
+{/* Highlights Section */}
+{activeSection === 'highlights' && (
+  <div className="space-y-8">
+    {event.details.highlights && event.details.highlights.length > 0 && (
+      <div>
+        <h4 className="text-xl font-semibold mb-4 font-title">Event Highlights</h4>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {event.details.highlights.map((highlight, idx) => (
+            <div
+              key={idx}
+              className="p-4 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors"
+            >
+              <div className="flex items-center gap-3 text-gray-600">
+                <span className="w-1.5 h-1.5 bg-gray-400 rounded-full flex-shrink-0" />
+                <span className="font-poly">{highlight}</span>
               </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    )}
+    
+    {event.details.outcomes && event.details.outcomes.length > 0 && (
+      <div>
+        <h4 className="text-xl font-semibold mb-4 font-title">Outcomes</h4>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {event.details.outcomes.map((outcome, idx) => (
+            <div
+              key={idx}
+              className="p-4 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors"
+            >
+              <div className="flex items-center gap-3 text-gray-600">
+                <span className="w-1.5 h-1.5 bg-gray-400 rounded-full flex-shrink-0" />
+                <span className="font-poly">{outcome}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    )}
+  </div>
+)}
+                </motion.div>
+              </AnimatePresence>
             </div>
           </motion.div>
         </motion.div>
 
-
+        {/* Full-screen Image Viewer */}
         <AnimatePresence>
           {selectedImage !== null && (
             <ImageViewer

@@ -216,9 +216,9 @@ export default function AboutSection() {
           variants={containerVariants}
         >
           {[
-            { number: "500+", label: "Active Members", color: "#C4FCF0" },
-            { number: "50+", label: "Events per Year", color: "#FCE7E2" },
-            { number: "20+", label: "Industry Partners", color: "#F9DEC2" },
+            { number: "100+", label: "Active Members", color: "#C4FCF0" },
+            { number: "10+", label: "Events", color: "#FCE7E2" },
+            { number: "5", label: "Industry Partners", color: "#F9DEC2" },
             { number: "100%", label: "Learning Opportunity", color: "#C4FCF0" }
           ].map((stat, index) => (
             <motion.div
@@ -439,9 +439,7 @@ export default function AboutSection() {
                       }
                     }}
                   >
-                    To be the premier student organization at SRM, fostering technical excellence, 
-                    professional growth, and innovative thinking. We aim to create a community of 
-                    future tech leaders who drive positive change through computing.
+Our goal is to be the leading student organization at SRM, promoting technical excellence, professional development, and innovative ideas. We strive to build a community of future tech leaders who will inspire positive change through the power of computing.
                   </motion.p>
                   
                   <motion.div 

@@ -301,7 +301,7 @@ export default function Hero() {
       >
         <div className="max-w-xl text-center sm:text-left">
           <p className="text-base sm:text-lg text-gray-700">
-            Daring companies come to us to craft ideas, products and experiences that redefine industries and defy possibilities.
+          Collaborate with like-minded peers and industry experts to push the boundaries of technology. Together, we connect, collaborate, and excel.
           </p>
         </div>
         <Link 
