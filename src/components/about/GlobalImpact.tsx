@@ -1,4 +1,4 @@
-// components/sections/GlobalImpact.tsx
+
 "use client";
 
 import React from 'react';

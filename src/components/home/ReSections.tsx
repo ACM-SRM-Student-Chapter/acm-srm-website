@@ -1,18 +1,47 @@
 "use client";
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
 export default function ReSections() {
-  const [reRef, reInView] = useInView({ triggerOnce: false, threshold: 0.5 });
-  const [section1Ref, section1InView] = useInView({ triggerOnce: true, threshold: 0.3 });
-  const [section2Ref, section2InView] = useInView({ triggerOnce: true, threshold: 0.3 });
-  const [section3Ref, section3InView] = useInView({ triggerOnce: true, threshold: 0.3 });
-  const [section4Ref, section4InView] = useInView({ triggerOnce: true, threshold: 0.3 });
+  const [isMounted, setIsMounted] = useState(false);
 
- 
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  const [reRef, reInView] = useInView({ 
+    triggerOnce: false, 
+    threshold: 0.5,
+    initialInView: false 
+  });
+  
+  const [section1Ref, section1InView] = useInView({ 
+    triggerOnce: true, 
+    threshold: 0.3,
+    initialInView: false 
+  });
+  
+  const [section2Ref, section2InView] = useInView({ 
+    triggerOnce: true, 
+    threshold: 0.3,
+    initialInView: false 
+  });
+  
+  const [section3Ref, section3InView] = useInView({ 
+    triggerOnce: true, 
+    threshold: 0.3,
+    initialInView: false 
+  });
+  
+  const [section4Ref, section4InView] = useInView({ 
+    triggerOnce: true, 
+    threshold: 0.3,
+    initialInView: false 
+  });
+
   const stickyVariants = {
     hidden: { scale: 0.9, opacity: 0 },
     visible: {
@@ -69,8 +98,9 @@ export default function ReSections() {
       scale: 1,
       rotate: -12,
       transition: {
-        duration: 0.5,
-        ease: "elastic.out(1, 0.5)",
+        type: "spring",
+        stiffness: 200,
+        damping: 10,
         delay: 0.3
       }
     }
@@ -90,9 +120,12 @@ export default function ReSections() {
     }
   };
 
+  if (!isMounted) {
+    return null;
+  }
+
   return (
     <div className="w-full relative flex">
-
       <motion.div 
         ref={reRef}
         initial="hidden"
@@ -108,7 +141,6 @@ export default function ReSections() {
         </h1>
       </motion.div>
 
-      {/* Content sections wrapper */}
       <div className="flex-1">
         {[
           {

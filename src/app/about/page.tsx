@@ -17,12 +17,13 @@ import {
 import { Globe } from 'lucide-react';
 
 
-// Import images
+
 import img1 from '../../../public/images/grpimg1.png';
 import img2 from '../../../public/images/grpimg2.png';
 import a1 from '../../../public/images/abt1.png';
 import a2 from '../../../public/images/abt2.png';
 import ab3 from '../../../public/images/abt3.png';
+import ab4 from '../../../public/images/ab4.png';
 import a3 from '../../../public/images/ac1.png';
 import va from '../../../public/images/v1.png';
 import vb from '../../../public/images/v2.png';
@@ -32,7 +33,7 @@ import vc from '../../../public/images/v3.png';
 import abt1 from '../../../public/images/gallery/abt1.jpeg';
 import abt2 from '../../../public/images/gallery/abt2.jpeg';
 import abt3 from '../../../public/images/gallery/abt3.jpeg';
-// Animation variants
+
 const fadeInUpVariants = {
   hidden: { 
     opacity: 0,
@@ -58,24 +59,24 @@ const staggerContainerVariants = {
   }
 };
 
-// Components interfaces
+
 interface HighlightCardProps {
   title: string;
   description: string;
   color?: string;
 }
 
-// Social Links Component
+
 const SocialLinks = () => {
   const socialLinks = [
     {
       icon: <FiInstagram size={24} />,
-      href: "https://instagram.com/acm_srm",
+      href: "https://www.instagram.com/srm.acm/",
       label: "Instagram"
     },
     {
       icon: <FiLinkedin size={24} />,
-      href: "https://linkedin.com/company/acm-srm",
+      href: "https://www.linkedin.com/company/srmist-acm-student-chapter",
       label: "LinkedIn"
     },
     {
@@ -85,7 +86,7 @@ const SocialLinks = () => {
     },
     {
       icon: <FiGithub size={24} />,
-      href: "https://github.com/acm-srm",
+      href: "https://github.com/ACM-SRM-Student-Chapter/",
       label: "GitHub"
     }
   ];
@@ -111,7 +112,7 @@ const SocialLinks = () => {
   );
 };
 
-// Original HighlightCard Component
+
 const HighlightCard: React.FC<HighlightCardProps> = ({ title, description, color = "bg-white" }) => (
   <motion.div
     initial={{ opacity: 0, y: 20 }}
@@ -524,43 +525,32 @@ export default function AboutPage() {
                 </div>
               </motion.div>
 
-              {/* Surakshitha Achievement Card */}
+
               <motion.div
-                variants={fadeInUpVariants}
-                className="relative group"
-              >
-                <div className="absolute inset-0 bg-gradient-to-r from-[#FCE7E2]/20 to-[#FDDC68]/20 rounded-3xl 
-                  transform rotate-2 transition-transform duration-300 group-hover:rotate-0" />
-                <div className="relative bg-white/90 p-8 rounded-3xl shadow-lg transform -rotate-1 
-                  transition-all duration-300 group-hover:rotate-0 group-hover:-translate-y-2">
-                  <div className="flex flex-col md:flex-row gap-8 items-center">
-                    <div className="w-48 h-48 relative overflow-hidden rounded-2xl bg-gradient-to-tr 
-                      from-[#C4FCF0] to-[#FCE7E2]">
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <motion.span 
-                          animate={{ 
-                            scale: [1, 1.2, 1],
-                            rotate: [0, 10, 0]
-                          }}
-                          transition={{ duration: 3, repeat: Infinity }}
-                          className="text-6xl"
-                        >
-                          👑
-                        </motion.span>
+                  variants={fadeInUpVariants}
+                  className="relative group"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-r from-blue-100/20 to-purple-100/20 rounded-3xl transform rotate-2 transition-transform duration-300 group-hover:rotate-0" />
+                  <div className="relative bg-white/90 p-8 rounded-3xl shadow-lg transform -rotate-1 transition-all duration-300 group-hover:rotate-0 group-hover:-translate-y-2">
+                    <div className="flex flex-col md:flex-row gap-8 items-center">
+                      <div className="w-48 h-48 relative overflow-hidden rounded-2xl bg-gradient-to-tr from-blue-100 to-purple-100">
+                        <Image
+                          src={ab4}
+                          alt="Ayushi Gupta"
+                          fill
+                          className="object-cover transform transition-transform duration-300 group-hover:scale-110"
+                        />
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="text-3xl font-bold font-title mb-2">ACM Winter School 2024</h3>
+                        <p className="text-xl text-gray-600 mb-4 font-title">Ayushi Gupta</p>
+                        <p className="text-gray-700 leading-relaxed">
+                          Selected for the prestigious ACM Winter School 2024 at DA-IICT, Gandhinagar, focusing on "Algorithms for Big Data and Machine Learning". This recognition celebrates Ayushi's dedication to advancing her knowledge in cutting-edge technology and marks an exciting milestone in her academic journey.
+                        </p>
                       </div>
                     </div>
-                    <div className="flex-1">
-                      <h3 className="text-3xl font-bold font-title mb-2">Chapter Chair</h3>
-                      <p className="text-xl text-gray-600 mb-4 font-title">Surakshitha</p>
-                      <p className="text-gray-700 leading-relaxed">
-                        Leading our chapter with vision and dedication. As our Chapter Chair, Surakshitha guides 
-                        our initiatives and ensures we maintain the highest standards of technical excellence 
-                        and community engagement.
-                      </p>
-                    </div>
                   </div>
-                </div>
-              </motion.div>
+                </motion.div>
             </motion.div>
           </section>
           <GlobalImpact />
@@ -698,9 +688,9 @@ export default function AboutPage() {
                   className="mt-12 flex flex-wrap justify-center gap-8"
                 >
                   {[
-                    { icon: <FiInstagram size={24} />, label: "Instagram", href: "https://instagram.com/acm_srm" },
-                    { icon: <FiLinkedin size={24} />, label: "LinkedIn", href: "https://linkedin.com/company/acm-srm" },
-                    { icon: <FiGithub size={24} />, label: "GitHub", href: "https://github.com/acm-srm" }
+                    { icon: <FiInstagram size={24} />, label: "Instagram", href: "https://instagram.com/acm.srm" },
+                    { icon: <FiLinkedin size={24} />, label: "LinkedIn", href: "https://www.linkedin.com/company/srmist-acm-student-chapter" },
+                    { icon: <FiGithub size={24} />, label: "GitHub", href: "https://github.com/ACM-SRM-Student-Chapter/" }
                   ].map((social, index) => (
                     <Link
                       key={social.label}

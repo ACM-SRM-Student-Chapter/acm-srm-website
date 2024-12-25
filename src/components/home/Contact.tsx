@@ -8,6 +8,7 @@ import {
   Mail, Phone, MapPin, Users, Book, Calendar, Search, ArrowUpRight 
 } from 'lucide-react';
 
+
 const MarqueeRibbons = () => {
   const text1 = "GET IN TOUCH • START A CONVERSATION • JOIN ACM SRM • ";
   const text2 = "INNOVATE • CONNECT • EXCEL • ACM STUDENT CHAPTER • ";
@@ -260,24 +261,42 @@ export default function Contact() {
             <div>
               <h3 className="text-lg font-title mb-6">Connect With Us</h3>
               <div className="flex flex-wrap gap-4">
-                {[
-                  { name: 'Twitter', icon: Twitter },
-                  { name: 'LinkedIn', icon: Linkedin },
-                  { name: 'Instagram', icon: Instagram },
-                  { name: 'GitHub', icon: Github }
-                ].map((social, idx) => (
-                  <motion.a
-                    key={social.name}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: idx * 0.1 }}
-                    href="#"
-                    className="group relative p-4 rounded-2xl bg-white/50 backdrop-blur-sm border border-black/5 hover:-translate-y-1 transition-all duration-300"
-                  >
-                    <social.icon className="w-6 h-6 text-black/70 group-hover:scale-110 transition-transform duration-300" />
-                    <div className="absolute inset-0 bg-gradient-to-r from-[#C4FCF0]/20 via-[#FCE7E2]/20 to-[#F9DEC2]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
-                  </motion.a>
-                ))}
+              {[
+              { 
+                name: 'Twitter', 
+                icon: Twitter,
+                href: 'https://twitter.com/acmsrm'  
+              },
+              { 
+                name: 'LinkedIn', 
+                icon: Linkedin,
+                href: 'https://www.linkedin.com/company/srmist-acm-student-chapter' 
+              },
+              { 
+                name: 'Instagram', 
+                icon: Instagram,
+                href: 'https://www.instagram.com/acm.srm'
+              },
+              { 
+                name: 'GitHub', 
+                icon: Github,
+                href: 'https://github.com/ACM-SRM-Student-Chapter/' 
+              }
+            ].map((social, idx) => (
+              <motion.a
+                key={social.name}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: idx * 0.1 }}
+                href={social.href}
+                target="_blank"     
+                rel="noopener noreferrer" 
+                className="group relative p-4 rounded-2xl bg-white/50 backdrop-blur-sm border border-black/5 hover:-translate-y-1 transition-all duration-300"
+              >
+                <social.icon className="w-6 h-6 text-black/70 group-hover:scale-110 transition-transform duration-300" />
+                <div className="absolute inset-0 bg-gradient-to-r from-[#C4FCF0]/20 via-[#FCE7E2]/20 to-[#F9DEC2]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
+              </motion.a>
+            ))}
               </div>
             </div>
           </div>

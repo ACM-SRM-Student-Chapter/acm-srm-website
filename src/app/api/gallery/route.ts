@@ -1,4 +1,4 @@
-// app/api/gallery/route.ts
+
 import { NextResponse } from 'next/server';
 import { promises as fs } from 'fs';
 import path from 'path';
@@ -8,13 +8,12 @@ export async function GET() {
     const galleryDir = path.join(process.cwd(), 'public', 'images', 'gallery');
     const files = await fs.readdir(galleryDir);
     
-    // Filter for image files
     const imageFiles = files.filter(file => {
       const ext = path.extname(file).toLowerCase();
       return ['.png', '.jpg', '.jpeg'].includes(ext);
     });
 
-    // Map to image objects with random sizes for visual interest
+
     const images = imageFiles.map((file, index) => {
       const sizes = ['small', 'medium', 'large'];
       const randomSize = sizes[Math.floor(Math.random() * sizes.length)];
