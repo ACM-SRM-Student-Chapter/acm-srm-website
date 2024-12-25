@@ -1,11 +1,9 @@
+// src/app/layout.tsx
 "use client";
+
 import { mangoGrotesque, polySans } from '@/styles/fonts'
 import '@/styles/globals.css'
-import dynamic from 'next/dynamic'
-
-const SmoothScroll = dynamic(() => import('@/components/ui/SmoothScroll'), {
-  ssr: false
-});
+import SmoothScroll from '@/components/ui/SmoothScroll'
 
 export default function RootLayout({
   children,
@@ -14,8 +12,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${mangoGrotesque.variable} ${polySans.variable}`}>
-      <body className="bg-white overflow-x-hidden">
-        <SmoothScroll>
+      <body className="bg-white">
+
+        <SmoothScroll>  
           {children}
         </SmoothScroll>
       </body>
