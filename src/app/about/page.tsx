@@ -22,11 +22,16 @@ import img1 from '../../../public/images/grpimg1.png';
 import img2 from '../../../public/images/grpimg2.png';
 import a1 from '../../../public/images/abt1.png';
 import a2 from '../../../public/images/abt2.png';
-import a3 from '../../../public/images/abt3.png';
+import ab3 from '../../../public/images/abt3.png';
+import a3 from '../../../public/images/ac1.png';
 import va from '../../../public/images/v1.png';
 import vb from '../../../public/images/v2.png';
 import vc from '../../../public/images/v3.png';
 
+
+import abt1 from '../../../public/images/gallery/abt1.jpeg';
+import abt2 from '../../../public/images/gallery/abt2.jpeg';
+import abt3 from '../../../public/images/gallery/abt3.jpeg';
 // Animation variants
 const fadeInUpVariants = {
   hidden: { 
@@ -182,29 +187,48 @@ export default function AboutPage() {
           />
         </div>
 
-        {/* Original Image Grid */}
-        <div className="flex justify-center items-start relative gap-1 md:gap-4 lg:gap-7">
-          <Image
-            src={img1}
-            alt="line"
-            className="w-[87px] h-[87px] md:w-[137px] md:h-[137px] lg:w-[300px] lg:h-[300px] rounded-xl lg:rounded-3xl transform -translate-y-1/2"
-          />
-          <Image
-            src={img2}
-            alt="line"
-            className="w-[87px] h-[46px] md:w-[137px] md:h-[96px] lg:w-[275px] lg:h-[157px] rounded-xl lg:rounded-3xl transform -translate-y-1/2"
-          />
-          <Image
-            src={img1}
-            alt="line"
-            className="w-[87px] h-[87px] md:w-[137px] md:h-[137px] lg:w-[300px] lg:h-[300px] rounded-xl lg:rounded-3xl transform -translate-y-1/2"
-          />
-          <Image
-            src={img2}
-            alt="line"
-            className="w-[87px] h-[46px] md:w-[137px] md:h-[96px] lg:w-[275px] lg:h-[157px] rounded-xl lg:rounded-3xl transform -translate-y-1/2"
-          />
-        </div>
+{/* Original Image Grid with fixed stretching */}
+<div className="flex justify-center items-start relative gap-1 md:gap-4 lg:gap-7">
+  {/* First square image */}
+  <div className="relative w-[87px] h-[87px] md:w-[137px] md:h-[137px] lg:w-[300px] lg:h-[300px] transform -translate-y-1/2">
+    <Image
+      src={abt1}
+      alt="line"
+      fill
+      className="rounded-xl lg:rounded-3xl object-cover"
+    />
+  </div>
+  
+  {/* Second rectangular image */}
+  <div className="relative w-[87px] h-[46px] md:w-[137px] md:h-[96px] lg:w-[275px] lg:h-[157px] transform -translate-y-1/2">
+    <Image
+      src={abt2}
+      alt="line"
+      fill
+      className="rounded-xl lg:rounded-3xl object-cover"
+    />
+  </div>
+  
+  {/* Third square image */}
+  <div className="relative w-[87px] h-[87px] md:w-[137px] md:h-[137px] lg:w-[300px] lg:h-[300px] transform -translate-y-1/2">
+    <Image
+      src={abt3}
+      alt="line"
+      fill
+      className="rounded-xl lg:rounded-3xl object-cover"
+    />
+  </div>
+  
+  {/* Fourth rectangular image */}
+  <div className="relative w-[87px] h-[46px] md:w-[137px] md:h-[96px] lg:w-[275px] lg:h-[157px] transform -translate-y-1/2">
+    <Image
+      src={img2}
+      alt="line"
+      fill
+      className="rounded-xl lg:rounded-3xl object-cover"
+    />
+  </div>
+</div>
         {/* Main Content - Original Empowering Minds Section */}
         <div>
           <motion.p 
@@ -275,7 +299,7 @@ export default function AboutPage() {
             {/* Why We Do Section */}
             <div className="flex flex-row justify-center items-center gap-2 md:gap-5 lg:gap-10 pt-4 md:pt-6 lg:pt-10 pb-10">
               <Image
-                src={a3}
+                src={ab3}
                 alt="line"
                 className="w-[181px] h-[146px] md:w-[251px] md:h-[206px] lg:w-[350px] lg:h-[310px] rounded-xl md:rounded-3xl"
               />

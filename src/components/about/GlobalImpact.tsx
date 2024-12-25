@@ -98,20 +98,20 @@ const GlobalImpact: React.FC = () => {
   const stats = [
     {
       icon: <img src="/images/icons8-globe-96.png" alt="Global Connections" className="w-8 h-8" />,
-      number: '150+',
-      label: 'Global Connections',
+      number: '1000+',
+      label: 'Instagram followers',
       color: '#C4FCF0'
     },
     {
       icon: <img src="/images/icons8-bookmark-96.png" alt="Research Projects" className="w-8 h-8" />,
-      number: '50+',
-      label: 'Research Projects',
+      number: '150+',
+      label: 'LinkedIn followers',
       color: '#FCE7E2'
     },
     {
       icon: <img src="/images/icons8-award-96.png" alt="Awards Won" className="w-8 h-8" />, 
-      number: '25+',
-      label: 'Awards Won',
+      number: '100+',
+      label: 'subscribers ',
       color: '#FDDC68'
     }
   ];

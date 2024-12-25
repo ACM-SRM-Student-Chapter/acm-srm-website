@@ -155,9 +155,7 @@ export default function GalleryPage() {
         <div className="text-center max-w-3xl mx-auto mb-12">
           <h2 className="text-3xl font-bold mb-6">Capturing Our Journey</h2>
           <p className="text-gray-600 mb-8">
-            Step into ACM SRMIST KTR Chapter's visual chronicle - where every image tells a story 
-            of innovation, learning, and community. From technical workshops to team celebrations, 
-            explore the moments that shape our vibrant tech community.
+          Step into the visual chronicle of ACM SRMIST KTR Chapter, where each image is a testament to innovation, learning, and community. From technical workshops to team celebrations, take a closer look at the moments that are shaping our vibrant tech community.
           </p>
         </div>
 
@@ -169,8 +167,7 @@ export default function GalleryPage() {
               <h3 className="text-xl font-semibold">Technical Events</h3>
             </div>
             <p className="text-gray-600">
-              Discover our hackathons, coding competitions, and technical workshops that 
-              bring together brilliant minds and foster innovation.
+            Discover our hackathons, coding competitions, and technical workshops that bring together brilliant minds and inspire out-of-the-box thinking.
             </p>
           </div>
 
@@ -180,8 +177,7 @@ export default function GalleryPage() {
               <h3 className="text-xl font-semibold">Community Building</h3>
             </div>
             <p className="text-gray-600">
-              Experience the collaborative spirit of our chapter through networking events, 
-              team activities, and community outreach programs.
+            Join us in experiencing the collaborative spirit of our chapter through networking events, team activities, and community outreach programs.
             </p>
           </div>
 
@@ -191,8 +187,7 @@ export default function GalleryPage() {
               <h3 className="text-xl font-semibold">Chapter Milestones</h3>
             </div>
             <p className="text-gray-600">
-              Celebrate our achievements, awards, and recognition that showcase our 
-              commitment to excellence in technology and education.
+            Let's celebrate our achievements, awards, and the recognition we've received that highlight our dedication to excellence in technology and education.
             </p>
           </div>
         </div>
