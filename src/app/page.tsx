@@ -10,8 +10,9 @@ import Footer from '@/components/global/Footer'
 
 export default function Home() {
   return (
+    
     <main>
-      <Navigation />
+      <Navigation />  
       <Hero />
       <Domains />
       <ReSections />
