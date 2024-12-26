@@ -10,6 +10,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${mangoGrotesque.variable} ${polySans.variable}`}>
+      <head>
+        <title>ACM SRM Student Chapter</title>
+      </head>
       <body className="bg-white">
         <SmoothScroll>
           {children}
