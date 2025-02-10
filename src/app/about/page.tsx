@@ -1,15 +1,6 @@
 "use client";
 
-import React from "react";
-import Image from "next/image";
-import Link from "next/link";
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
-import { useInView } from 'react-intersection-observer';
-import Navigation from "@/components/global/Navigation";
-import Footer from '@/components/global/Footer';
-import { FiInstagram, FiLinkedin, FiGithub } from 'react-icons/fi';
-import { SiDiscord } from 'react-icons/si';
-import GlobalImpact from '@/components/about/GlobalImpact';
+
 
 import { 
   LineChart, AreaChart, Area, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer 
